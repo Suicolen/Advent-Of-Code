@@ -5,18 +5,20 @@ import suic.util.FileUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Day1 {
+public class Day1 implements Puzzle<Integer> {
     public static void main(String[] args) {
         List<Integer> input = FileUtils.readResource("Day1Input.txt").stream().map(Integer::parseInt).collect(Collectors
                 .toList());
-        int target = 2020;
-        int part1Result = solvePart1(input, target);
+        Day1 day1 = new Day1();
+        int part1Result = day1.solvePart1(input);
         System.out.println("Part 1 result = " + part1Result);
-        int part2Result = solvePart2(input, target);
+        int part2Result = day1.solvePart2(input);
         System.out.println("Part 2 result = " + part2Result);
     }
 
-    private static int solvePart1(List<Integer> input, int target) {
+    @Override
+    public Integer solvePart1(List<Integer> input) {
+        int target = 2020;
         Map<Integer, Integer> occurred = new HashMap<>();
         for (int i = 0; i < input.size(); i++) {
             if (occurred.containsKey(target - input.get(i))) {
@@ -28,7 +30,9 @@ public class Day1 {
         return -1;
     }
 
-    private static int solvePart2(List<Integer> input, int target) {
+    @Override
+    public Integer solvePart2(List<Integer> input) {
+        int target = 2020;
         Collections.sort(input);
         for (int i = 0; i < input.size() - 2; i++) {
             if (i == 0 || !input.get(i).equals(input.get(i - 1))) {
