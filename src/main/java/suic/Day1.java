@@ -22,11 +22,10 @@ public class Day1 implements Puzzle<Integer> {
     public Integer solvePart1(List<Integer> input) {
         int target = 2020;
         Set<Integer> occurred = new HashSet<>();
-        for (int i = 0; i < input.size(); i++) {
-            if (occurred.contains(target - input.get(i))) {
-                return (target - input.get(i)) * input.get(i);
-            } else {
-                occurred.add(input.get(i));
+        for (int value : input) {
+            occurred.add(value);
+            if (occurred.contains(target - value)) {
+                return value * (target - value);
             }
         }
         return -1;
