@@ -3,7 +3,9 @@ package suic;
 import suic.util.FileUtils;
 
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Day1 implements Puzzle<Integer> {
     public static void main(String[] args) {
@@ -19,12 +21,12 @@ public class Day1 implements Puzzle<Integer> {
     @Override
     public Integer solvePart1(List<Integer> input) {
         int target = 2020;
-        Map<Integer, Integer> occurred = new HashMap<>();
+        Set<Integer> occurred = new HashSet<>();
         for (int i = 0; i < input.size(); i++) {
-            if (occurred.containsKey(target - input.get(i))) {
+            if (occurred.contains(target - input.get(i))) {
                 return (target - input.get(i)) * input.get(i);
             } else {
-                occurred.put(input.get(i), i);
+                occurred.add(input.get(i));
             }
         }
         return -1;
@@ -33,7 +35,7 @@ public class Day1 implements Puzzle<Integer> {
     @Override
     public Integer solvePart2(List<Integer> input) {
         int target = 2020;
-        Collections.sort(input);//a
+        Collections.sort(input);
         for (int i = 0; i < input.size() - 2; i++) {
             if (i == 0 || !input.get(i).equals(input.get(i - 1))) {
                 int low = i + 1;
