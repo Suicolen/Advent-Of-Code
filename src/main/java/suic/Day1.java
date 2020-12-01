@@ -17,12 +17,12 @@ public class Day1 {
     }
 
     private static int solvePart1(List<Integer> input, int target) {
-        Map<Integer, Integer> occured = new HashMap<>();
+        Map<Integer, Integer> occurred = new HashMap<>();
         for (int i = 0; i < input.size(); i++) {
-            if (occured.containsKey(target - input.get(i))) {
+            if (occurred.containsKey(target - input.get(i))) {
                 return (target - input.get(i)) * input.get(i);
             } else {
-                occured.put(input.get(i), i);
+                occurred.put(input.get(i), i);
             }
         }
         return -1;
