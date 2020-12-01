@@ -33,7 +33,7 @@ public class Day1 implements Puzzle<Integer> {
     @Override
     public Integer solvePart2(List<Integer> input) {
         int target = 2020;
-        Collections.sort(input);
+        Collections.sort(input);//a
         for (int i = 0; i < input.size() - 2; i++) {
             if (i == 0 || !input.get(i).equals(input.get(i - 1))) {
                 int low = i + 1;
