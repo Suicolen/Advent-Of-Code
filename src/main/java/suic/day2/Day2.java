@@ -35,14 +35,11 @@ public class Day2 implements Puzzle<Entry, Integer> {
 
     @Override
     public Integer solvePart1() {
-        List<Entry> entries = parse();
-        return (int) entries.stream().filter(entry -> isValid(entry, true)).count();
+        return (int) parse().stream().filter(entry -> isValid(entry, true)).count();
     }
-
 
     @Override
     public Integer solvePart2() {
-        List<Entry> entries = parse();
-        return (int) entries.stream().filter(entry -> isValid(entry, false)).count();
+        return (int) parse().stream().filter(entry -> isValid(entry, false)).count();
     }
 }
