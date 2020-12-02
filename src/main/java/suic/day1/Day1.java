@@ -1,26 +1,29 @@
-package suic;
+package suic.day1;
 
+import suic.Puzzle;
 import suic.util.FileUtils;
 
 import java.util.*;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class Day1 implements Puzzle<Integer> {
+public class Day1 implements Puzzle<Integer, Integer> {
+
+
     public static void main(String[] args) {
-        List<Integer> input = FileUtils.readResource("Day1Input.txt").stream().map(Integer::parseInt).collect(Collectors
-                .toList());
         Day1 day1 = new Day1();
-        int part1Result = day1.solvePart1(input);
-        System.out.println("Part 1 result = " + part1Result);
-        int part2Result = day1.solvePart2(input);
-        System.out.println("Part 2 result = " + part2Result);
+        System.out.println("Part 1 = " + day1.solvePart1());
+        System.out.println("Part 2 = " + day1.solvePart2());
     }
 
     @Override
-    public Integer solvePart1(List<Integer> input) {
+    public List<Integer> parse() {
+        return FileUtils.readResource(getClass().getSimpleName() + "Input.txt").stream().map(Integer::parseInt).collect(Collectors
+                .toList());
+    }
+
+    public Integer solvePart1() {
         int target = 2020;
+        List<Integer> input = parse();
         Set<Integer> occurred = new HashSet<>();
         for (int value : input) {
             occurred.add(value);
@@ -31,9 +34,9 @@ public class Day1 implements Puzzle<Integer> {
         return -1;
     }
 
-    @Override
-    public Integer solvePart2(List<Integer> input) {
+    public Integer solvePart2() {
         int target = 2020;
+        List<Integer> input = parse();
         Collections.sort(input);
         for (int i = 0; i < input.size() - 2; i++) {
             if (i == 0 || !input.get(i).equals(input.get(i - 1))) {
@@ -53,4 +56,5 @@ public class Day1 implements Puzzle<Integer> {
         }
         return -1;
     }
+
 }
