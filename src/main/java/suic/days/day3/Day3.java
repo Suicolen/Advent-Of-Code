@@ -15,13 +15,13 @@ public class Day3 implements Puzzle<String, Long> {
 
     private long countTrees(List<String> input, int right, int down) {
         int trees = 0;
-        int position = 0;
+        int x = 0;
         for (int y = 0; y < input.size(); y += down) {
             String line = input.get(y);
-            if (line.charAt(position) == '#') {
+            if (line.charAt(x) == '#') {
                 trees++;
             }
-            position = (position + right) % line.length();
+            x = (x + right) % line.length();
         }
         return trees;
     }
