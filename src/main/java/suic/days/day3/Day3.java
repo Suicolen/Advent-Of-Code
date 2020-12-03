@@ -3,8 +3,8 @@ package suic.days.day3;
 import suic.Puzzle;
 import suic.util.FileUtils;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Day3 implements Puzzle<String, Long> {
 
@@ -35,13 +35,16 @@ public class Day3 implements Puzzle<String, Long> {
     @Override
     public Long solvePart2() {
         List<String> input = parse();
-        List<GridCoordinate> coordinates = List.of(
+        Stream<GridCoordinate> coordinates = Stream.of(
                 new GridCoordinate(1, 1),
                 new GridCoordinate(3, 1),
                 new GridCoordinate(5, 1),
                 new GridCoordinate(7, 1),
                 new GridCoordinate(1, 2)
         );
-        return coordinates.stream().mapToLong(c -> countTrees(input, c.getX(), c.getY())).reduce(1, (a, b) -> a * b);
+        
+
+        return coordinates.mapToLong(c -> countTrees(input, c.getX(), c.getY()))
+                .reduce(1, (a, b) -> a * b);
     }
 }
