@@ -20,7 +20,7 @@ public class AdventCalender {
     }
 
     private static void run() {
-        run(2);
+        run(3);
     }
 
     private static void run(int dayOfMonth) {

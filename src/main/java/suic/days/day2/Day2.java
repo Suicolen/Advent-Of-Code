@@ -8,12 +8,6 @@ import java.util.List;
 
 public class Day2 implements Puzzle<Entry, Long> {
 
-    public static void main(String[] args) {
-        Day2 day2 = new Day2();
-        System.out.println("Part 1 = " + day2.solvePart1());
-        System.out.println("Part 2 = " + day2.solvePart2());
-    }
-
     @Override
     public List<Entry> parse() {
         List<String> input = FileUtils.readResource(getClass().getSimpleName() + "Input.txt");
