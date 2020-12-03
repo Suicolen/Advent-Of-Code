@@ -42,7 +42,7 @@ public class Day3 implements Puzzle<String, Long> {
                 new GridCoordinate(7, 1),
                 new GridCoordinate(1, 2)
         );
-        
+
 
         return coordinates.mapToLong(c -> countTrees(input, c.getX(), c.getY()))
                 .reduce(1, (a, b) -> a * b);

@@ -20,7 +20,7 @@ public class AdventCalender {
     }
 
     private static void run() {
-        run(3);
+       runAll();
     }
 
     private static void run(int dayOfMonth) {
@@ -36,7 +36,7 @@ public class AdventCalender {
     }
 
     private static void runAll() {
-        for (int i = 1; i <= 2; i++) {
+        for (int i = 1; i <= 25; i++) {
             run(i);
         }
     }
