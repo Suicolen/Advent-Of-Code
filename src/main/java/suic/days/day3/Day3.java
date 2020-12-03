@@ -21,7 +21,6 @@ public class Day3 implements Puzzle<String, Long> {
             if (line.charAt(position) == '#') {
                 trees++;
             }
-
             position = (position + right) % line.length();
         }
         return trees;
@@ -43,12 +42,6 @@ public class Day3 implements Puzzle<String, Long> {
                 new GridCoordinate(7, 1),
                 new GridCoordinate(1, 2)
         );
-        long[] trees = new long[coordinates.size()];
-        for (int i = 0; i < trees.length; i++) {
-            GridCoordinate coordinate = coordinates.get(i);
-            trees[i] = countTrees(input, coordinate.getX(), coordinate.getY());
-        }
-
-        return Arrays.stream(trees).reduce(1, (a, b) -> a * b);
+        return coordinates.stream().mapToLong(c -> countTrees(input, c.getX(), c.getY())).reduce(1, (a, b) -> a * b);
     }
 }
