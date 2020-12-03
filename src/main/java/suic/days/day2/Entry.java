@@ -1,4 +1,4 @@
-package suic.day2;
+package suic.days.day2;
 
 import com.svetylkovo.rojo.annotations.Group;
 import com.svetylkovo.rojo.annotations.Mapper;

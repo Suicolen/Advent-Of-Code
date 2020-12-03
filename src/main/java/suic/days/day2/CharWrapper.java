@@ -1,4 +1,4 @@
-package suic.day2;
+package suic.days.day2;
 
 import java.util.function.Function;
 

@@ -1,4 +1,4 @@
-package suic.day2;
+package suic.days.day2;
 
 import com.svetylkovo.rojo.Rojo;
 import suic.Puzzle;
@@ -6,7 +6,7 @@ import suic.util.FileUtils;
 
 import java.util.List;
 
-public class Day2 implements Puzzle<Entry, Integer> {
+public class Day2 implements Puzzle<Entry, Long> {
 
     public static void main(String[] args) {
         Day2 day2 = new Day2();
@@ -34,12 +34,12 @@ public class Day2 implements Puzzle<Entry, Integer> {
     }
 
     @Override
-    public Integer solvePart1() {
-        return (int) parse().stream().filter(entry -> isValid(entry, true)).count();
+    public Long solvePart1() {
+        return parse().stream().filter(entry -> isValid(entry, true)).count();
     }
 
     @Override
-    public Integer solvePart2() {
-        return (int) parse().stream().filter(entry -> isValid(entry, false)).count();
+    public Long solvePart2() {
+        return parse().stream().filter(entry -> isValid(entry, false)).count();
     }
 }
