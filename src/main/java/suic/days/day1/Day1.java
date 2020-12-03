@@ -30,9 +30,11 @@ public class Day1 implements Puzzle<Integer, Integer> {
     public Integer solvePart2() {
         int target = 2020;
         List<Integer> input = parse();
+        if(input.size() < 3) {
+            return -1;
+        }
         Collections.sort(input);
-        for (int i = 0; i < input.size() - 2; i++) {
-            if (i == 0 || !input.get(i).equals(input.get(i - 1))) {
+        for (int i = 0; i < input.size(); i++) {
                 int low = i + 1;
                 int high = input.size() - 1;
                 int sum = target - input.get(i);
@@ -45,7 +47,6 @@ public class Day1 implements Puzzle<Integer, Integer> {
                         low++;
                     }
                 }
-            }
         }
         return -1;
     }

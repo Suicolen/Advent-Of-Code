@@ -16,11 +16,11 @@ public class AdventCalender {
     private static final String BASE_PACKAGE = AdventCalender.class.getPackageName() + ".days.";
 
     public static void main(String[] args) {
-        run();
+        run(1);
     }
 
     private static void run() {
-       runAll();
+      //runAll();
     }
 
     private static void run(int dayOfMonth) {
