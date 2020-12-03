@@ -21,15 +21,15 @@ public class Day2 implements Puzzle<Entry, Long> {
     }
 
     public boolean isValid(Entry entry, boolean firstPart) {
-        int min = entry.getMin();
-        int max = entry.getMax();
+        int lower = entry.getLowerBound();
+        int upper = entry.getUpperBound();
         char c = entry.getCharacter();
         String password = entry.getPassword();
         if (firstPart) {
             int count = (int) password.chars().filter(ch -> ch == c).count();
-            return count >= min && count <= max;
+            return count >= lower && count <= upper;
         } else {
-            return (password.charAt(min - 1) == c) ^ (password.charAt(max - 1) == c);
+            return (password.charAt(lower - 1) == c) ^ (password.charAt(upper - 1) == c);
         }
     }
 

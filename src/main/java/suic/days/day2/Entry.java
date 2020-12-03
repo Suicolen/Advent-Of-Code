@@ -9,10 +9,10 @@ import lombok.Data;
 @Data
 public class Entry {
     @Group(1)
-    int min;
+    int lowerBound;
 
     @Group(2)
-    int max;
+    int upperBound;
 
     @Group(3)
     @Mapper(CharWrapper.class)

@@ -20,13 +20,13 @@ public class AdventCalender {
     }
 
     private static void run() {
-        runAll();
+        run(2);
     }
 
     private static void run(int dayOfMonth) {
             try {
                 Class<?> clazz = Class.forName(BASE_PACKAGE + pad(dayOfMonth));
-                System.out.println(clazz.getSimpleName());
+                System.out.println("Day " + dayOfMonth + " Solution");
                 Puzzle<?, ?> puzzle = (Puzzle<?, ?>) clazz.getDeclaredConstructor().newInstance();
                 System.out.println("Part 1 result = " + puzzle.solvePart1());
                 System.out.println("Part 2 result = " + puzzle.solvePart2());
