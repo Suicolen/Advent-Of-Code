@@ -55,8 +55,8 @@ public class Day4 implements Puzzle<String, Long> {
                 continue;
             }
             Arrays.sort(parts, Comparator.comparing(s -> s.substring(0, 3)));
-            String joinedValues = Arrays.stream(parts).map(s -> s.substring(4)).collect(Collectors.joining(" "));
-            if (part2ValidCombined(joinedValues)) {
+            String joinedPassport = Arrays.stream(parts).map(s -> s.substring(4)).collect(Collectors.joining(" "));
+            if (part2ValidCombined(joinedPassport)) {
                 count++;
             }
 
@@ -81,8 +81,8 @@ public class Day4 implements Puzzle<String, Long> {
         return IntStream.range(0, passports.length).allMatch(i -> passports[i].split(":")[1].matches(REGEXES[i]));
     }
 
-    private boolean part2ValidCombined(String str) {
-        return Pattern.compile(COMBINED_REGEX).matcher(str).matches();
+    private boolean part2ValidCombined(String passport) {
+        return Pattern.compile(COMBINED_REGEX).matcher(passport).matches();
     }
 
 }
