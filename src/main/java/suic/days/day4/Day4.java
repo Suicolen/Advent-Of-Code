@@ -82,9 +82,7 @@ public class Day4 implements Puzzle<String, Long> {
     }
 
     private boolean part2ValidCombined(String str) {
-        Pattern p = Pattern.compile(COMBINED_REGEX);
-        Matcher m = p.matcher(str);
-        return m.matches();
+        return Pattern.compile(COMBINED_REGEX).matcher(str).matches();
     }
 
 }
