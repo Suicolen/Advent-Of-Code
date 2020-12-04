@@ -20,7 +20,7 @@ public class Day2 implements Puzzle<Entry, Long> {
         char c = entry.getCharacter();
         String password = entry.getPassword();
         if (firstPart) {
-            int count = (int) password.chars().filter(ch -> ch == c).count();
+            long count = password.chars().filter(ch -> ch == c).count();
             return count >= lower && count <= upper;
         } else {
             return (password.charAt(lower - 1) == c) ^ (password.charAt(upper - 1) == c);
