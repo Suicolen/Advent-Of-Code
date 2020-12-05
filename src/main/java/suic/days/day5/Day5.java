@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -16,13 +18,8 @@ public class Day5 implements Puzzle<Integer, Integer> {
     public List<Integer> parse() {
         return FileUtils.readResource(getClass().getSimpleName() + "Input.txt")
                 .stream()
-                .map(line -> line.replace("F", "0")
-                        .
-                                replace("B", "1")
-                        .
-                                replace("L", "0")
-                        .
-                                replace("R", "1"))
+                .map(line -> line.replaceAll("[FL]", "0")
+                        .replaceAll("[BR]", "1"))
                 .mapToInt(b -> Integer.parseInt(b, 2))
                 .boxed()
                 .collect(Collectors.toList());
