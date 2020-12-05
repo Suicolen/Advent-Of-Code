@@ -3,23 +3,25 @@ package suic.days.day5;
 import suic.Puzzle;
 import suic.util.FileUtils;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.function.IntPredicate;
-import java.util.function.Predicate;
+import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Day5 implements Puzzle<Integer, Integer> {
 
+
+    final Pattern FL_PATTERN = Pattern.compile("[FL]");
+    final Pattern BR_PATTERN = Pattern.compile("[BR]");
+
     @Override
     public List<Integer> parse() {
         return FileUtils.readResource(getClass().getSimpleName() + "Input.txt")
                 .stream()
-                .map(line -> line.replaceAll("[FL]", "0")
-                        .replaceAll("[BR]", "1"))
+                .map(line -> FL_PATTERN.matcher(line)
+                        .replaceAll("0"))
+                .map(line -> BR_PATTERN.matcher(line)
+                        .replaceAll("1"))
                 .mapToInt(b -> Integer.parseInt(b, 2))
                 .boxed()
                 .collect(Collectors.toList());
@@ -32,6 +34,7 @@ public class Day5 implements Puzzle<Integer, Integer> {
                 .max(Comparator.naturalOrder())
                 .orElse(-1);
     }
+
 
     @Override
     public Integer solvePart2() {
