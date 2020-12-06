@@ -13,11 +13,11 @@ public class Day6 implements Puzzle<String, Long> {
         List<String> parsedInput = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         for (String line : input) {
-            if (line.trim().length() == 0) {
+            if (line.isEmpty()) {
                 parsedInput.add(sb.toString());
                 sb.setLength(0);
             } else {
-                sb.append(line.trim()).append("\n");
+                sb.append(line).append("\n");
             }
         }
         if (!sb.isEmpty()) {
