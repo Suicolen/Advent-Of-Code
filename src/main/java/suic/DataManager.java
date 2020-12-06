@@ -20,8 +20,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Unused atm
+ * Credit: SizableShrimp
+ */
+
 public class DataManager {
-    public static final String USER_AGENT = "SizableShrimp-AOC-Data-Bot/2.0.2.0 (+http://github.com/SizableShrimp/AdventOfCode2020)";
+    public static final String USER_AGENT = "Suic (+http://github.com/SizableShrimp/AdventOfCode2020)";
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private static String sessionCookie;
 
