@@ -3,6 +3,8 @@ package suic;
 public class AdventCalender {
 
     private static final String BASE_PACKAGE = AdventCalender.class.getPackageName() + ".days.";
+    public static final int YEAR = 2020;
+
 
     public static void main(String[] args) {
         runAll();
@@ -30,7 +32,7 @@ public class AdventCalender {
         }
     }
 
-    private static String pad(int i) {
+    public static String pad(int i) {
         return String.format("day%d.Day%d", i, i);
     }
 }
