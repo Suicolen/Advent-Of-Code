@@ -2,7 +2,6 @@ package suic.days.day6;
 
 import suic.Puzzle;
 import suic.util.FileUtils;
-
 import java.util.*;
 
 public class Day6 implements Puzzle<String, Long> {
@@ -43,7 +42,7 @@ public class Day6 implements Puzzle<String, Long> {
     private long countSecond(String group) {
         List<String> passengers = Arrays.asList(group.split("\n"));
         return passengers.get(0).chars().filter(c -> passengers.stream()
-                .filter(line -> line.indexOf(c) >= 0).count() == passengers.size())
+                .filter(passenger -> passenger.indexOf(c) >= 0).count() == passengers.size())
                 .count();
     }
 }
