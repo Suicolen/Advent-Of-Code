@@ -19,7 +19,7 @@ public class Day7 implements Puzzle<String, Integer> {
         return FileUtils.readResource(getClass().getSimpleName() + "Input.txt");
     }
 
-    public Day7() {
+    public Day7() { // meh
         parseNodes();
     }
 
