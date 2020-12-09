@@ -1,10 +1,12 @@
 package suic.days.day9;
 
+import com.google.common.base.Functions;
 import suic.Puzzle;
 import suic.util.FileUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 public class Day9 implements Puzzle<Long, Long> {
 
@@ -72,8 +74,7 @@ public class Day9 implements Puzzle<Long, Long> {
             }
         }
         List<Long> range = numbers.subList(i, j + 1);
-        long min = range.stream().reduce(Long::min).orElse(-1L);
-        long max = range.stream().reduce(Long::max).orElse(-1L);
-        return min + max;
+        LongSummaryStatistics statistics = range.stream().collect(Collectors.summarizingLong(Long::longValue));
+        return statistics.getMin() + statistics.getMax();
     }
 }
