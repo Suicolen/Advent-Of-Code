@@ -33,12 +33,6 @@ public class Day4 implements Puzzle<String, Long> {
         return parse().stream().filter(this::isValidPart1).count();
     }
 
-    private boolean isValidPart1(String str) {
-        int count = str.contains("cid:") ? 8 : 7;
-        return str.split(" ").length == count;
-    }
-
-
     @Override
     public Long solvePart2() {
         long count = 0;
@@ -55,7 +49,9 @@ public class Day4 implements Puzzle<String, Long> {
                 continue;
             }
             Arrays.sort(parts, Comparator.comparing(s -> s.substring(0, 3)));
-            String joinedPassport = Arrays.stream(parts).map(s -> s.substring(4)).collect(Collectors.joining(" "));
+            String joinedPassport = Arrays.stream(parts)
+                    .map(s -> s.substring(4))
+                    .collect(Collectors.joining(" "));
             if (part2ValidCombined(joinedPassport)) {
                 count++;
             }
@@ -64,11 +60,16 @@ public class Day4 implements Puzzle<String, Long> {
         return count;
     }
 
+    private boolean isValidPart1(String str) {
+        int count = str.contains("cid:") ? 8 : 7;
+        return str.split(" ").length == count;
+    }
+
     private final String[] REGEXES = {
             "^(19[2-9]\\d|200[012])$",
             "(amb|blu|brn|gry|grn|hzl|oth)",
             "(202\\d)|(2030)",
-            "#([a-fA-F0-9]{6})",
+            "^#[0-9a-fA-F]{6}$",
             "^((1[5-8][0-9]|19[0-3])cm)|((59|6[0-9]|7[0-6])in)$",
             "(201\\d)|(2020)",
             "\\d{9}"
@@ -76,13 +77,19 @@ public class Day4 implements Puzzle<String, Long> {
 
     private final String COMBINED_REGEX = "(19[2-9]\\d|200[012]) (amb|blu|brn|gry|grn|hzl|oth) (202\\d|(2030)) #([a-fA-F0-9]{6}) ((1[5-8][0-9]|19[0-3])cm|((59|6[0-9]|7[0-6])in)) (201\\d|(2020)) \\d{9}";
 
+    private final Pattern COMBINED_PATTERN = Pattern.compile(COMBINED_REGEX);
+
+    private final Pattern[] PATTERNS = Arrays.stream(REGEXES)
+            .map(Pattern::compile)
+            .toArray(Pattern[]::new);
 
     private boolean part2Valid(String[] passports) {
-        return IntStream.range(0, passports.length).allMatch(i -> passports[i].split(":")[1].matches(REGEXES[i]));
+        return IntStream.range(0, passports.length)
+                .allMatch(i -> PATTERNS[i].matcher(passports[i].split(":")[1]).matches());
     }
 
     private boolean part2ValidCombined(String passport) {
-        return Pattern.compile(COMBINED_REGEX).matcher(passport).matches();
+        return COMBINED_PATTERN.matcher(passport).matches();
     }
 
 }

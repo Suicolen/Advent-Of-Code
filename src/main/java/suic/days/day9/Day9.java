@@ -74,7 +74,7 @@ public class Day9 implements Puzzle<Long, Long> {
             }
         }
         List<Long> range = numbers.subList(i, j + 1);
-        LongSummaryStatistics statistics = range.stream().collect(Collectors.summarizingLong(Long::longValue));
+        LongSummaryStatistics statistics = range.stream().mapToLong(Long::longValue).summaryStatistics();
         return statistics.getMin() + statistics.getMax();
     }
 }
