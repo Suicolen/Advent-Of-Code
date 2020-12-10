@@ -1,5 +1,10 @@
 package suic;
 
+/*
+ * Copyright (c) 2020 SizableShrimp.
+ * This file is provided under version 3 of the GNU Lesser General Public License.
+ */
+
 public class AdventCalender {
 
     private static final String BASE_PACKAGE = AdventCalender.class.getPackageName() + ".days.";
@@ -12,7 +17,7 @@ public class AdventCalender {
 
     private static void run() {
         System.out.println("-----------------------------------------------------------");
-        run(10);
+        runAll();
     }
 
     private static void run(int dayOfMonth) {
