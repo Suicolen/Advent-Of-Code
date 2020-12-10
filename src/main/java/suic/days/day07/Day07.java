@@ -6,6 +6,7 @@ import suic.util.FileUtils;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Day07 implements Puzzle<String, Integer> {

@@ -17,7 +17,7 @@ public class AdventCalender {
 
     private static void run() {
         System.out.println("-----------------------------------------------------------");
-        runAll();
+        run(7);
     }
 
     private static void run(int dayOfMonth) {
@@ -49,6 +49,6 @@ public class AdventCalender {
     }
 
     public static String pad(int i) {
-        return String.format("day%02d.Day%d", i, i);
+        return String.format("day%02d.Day%02d", i, i);
     }
 }
