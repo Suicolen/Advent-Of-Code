@@ -6,7 +6,7 @@ import suic.util.FileUtils;
 
 import java.util.List;
 
-public class Day2 implements Puzzle<Entry, Long> {
+public class Day02 implements Puzzle<Entry, Long> {
 
     @Override
     public List<Entry> parse() {

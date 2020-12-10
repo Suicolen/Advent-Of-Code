@@ -4,7 +4,7 @@ import suic.Puzzle;
 import suic.util.FileUtils;
 import java.util.*;
 
-public class Day6 implements Puzzle<String, Long> {
+public class Day06 implements Puzzle<String, Long> {
 
     @Override
     public List<String> parse() {

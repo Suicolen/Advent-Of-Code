@@ -6,7 +6,7 @@ import suic.util.FileUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Day1 implements Puzzle<Integer, Integer> {
+public class Day01 implements Puzzle<Integer, Integer> {
 
     @Override
     public List<Integer> parse() {

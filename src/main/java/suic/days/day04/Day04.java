@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Day4 implements Puzzle<String, Long> {
+public class Day04 implements Puzzle<String, Long> {
 
     @Override
     public List<String> parse() {

@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day7 implements Puzzle<String, Integer> {
+public class Day07 implements Puzzle<String, Integer> {
 
     private static final Pattern MAIN_PATTERN = Pattern.compile("(.+) bags contain (.+)\\.");
     private static final Pattern SUB_PATTERN = Pattern.compile("(\\d+?) (.+?) bags?");
@@ -18,7 +18,7 @@ public class Day7 implements Puzzle<String, Integer> {
         return FileUtils.readResource(getClass().getSimpleName() + "Input.txt");
     }
 
-    public Day7() { // meh
+    public Day07() { // meh
         parseNodes();
     }
 

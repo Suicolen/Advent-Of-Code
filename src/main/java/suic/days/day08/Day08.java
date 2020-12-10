@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Day8 implements Puzzle<Operation, Integer> {
+public class Day08 implements Puzzle<Operation, Integer> {
 
     @Override
     public List<Operation> parse() {

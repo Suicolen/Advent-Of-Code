@@ -6,7 +6,7 @@ import suic.util.FileUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Day9 implements Puzzle<Long, Long> {
+public class Day09 implements Puzzle<Long, Long> {
 
     @Override
     public List<Long> parse() {

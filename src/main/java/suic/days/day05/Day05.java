@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Day5 implements Puzzle<Integer, Integer> {
+public class Day05 implements Puzzle<Integer, Integer> {
 
 
     final Pattern FL_PATTERN = Pattern.compile("[FL]");
