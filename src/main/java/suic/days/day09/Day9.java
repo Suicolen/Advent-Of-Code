@@ -1,14 +1,10 @@
-package suic.days.day9;
+package suic.days.day09;
 
-import com.google.common.base.Functions;
 import suic.Puzzle;
-import suic.days.day8.Instruction;
-import suic.days.day8.Operation;
 import suic.util.FileUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.LongStream;
 
 public class Day9 implements Puzzle<Long, Long> {
 

@@ -1,4 +1,4 @@
-package suic.days.day3;
+package suic.days.day03;
 
 import lombok.Value;
 

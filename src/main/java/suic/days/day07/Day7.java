@@ -1,6 +1,5 @@
-package suic.days.day7;
+package suic.days.day07;
 
-import org.checkerframework.common.value.qual.ArrayLen;
 import suic.Puzzle;
 import suic.util.FileUtils;
 

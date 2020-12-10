@@ -1,4 +1,4 @@
-package suic.days.day2;
+package suic.days.day02;
 
 import com.svetylkovo.rojo.Rojo;
 import suic.Puzzle;

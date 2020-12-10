@@ -44,6 +44,6 @@ public class AdventCalender {
     }
 
     public static String pad(int i) {
-        return String.format("day%d.Day%d", i, i);
+        return String.format("day%d.Day%02d", i, i);
     }
 }

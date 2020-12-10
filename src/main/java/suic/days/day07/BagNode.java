@@ -1,4 +1,4 @@
-package suic.days.day7;
+package suic.days.day07;
 
 import lombok.EqualsAndHashCode;
 import lombok.Value;

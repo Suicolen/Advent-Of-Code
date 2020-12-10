@@ -1,4 +1,4 @@
-package suic.days.day6;
+package suic.days.day06;
 
 import suic.Puzzle;
 import suic.util.FileUtils;

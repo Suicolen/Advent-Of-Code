@@ -1,13 +1,9 @@
-package suic.days.day4;
+package suic.days.day04;
 
-import com.google.common.collect.ImmutableSet;
 import suic.Puzzle;
-import suic.days.day8.Instruction;
-import suic.days.day8.Operation;
 import suic.util.FileUtils;
 
 import java.util.*;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
