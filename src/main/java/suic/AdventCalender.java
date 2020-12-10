@@ -12,7 +12,7 @@ public class AdventCalender {
 
     private static void run() {
         System.out.println("-----------------------------------------------------------");
-        run(4);
+        run(10);
     }
 
     private static void run(int dayOfMonth) {
@@ -38,7 +38,7 @@ public class AdventCalender {
     }
 
     private static void runRange(int start, int end) {
-        for(int i = start; i <= end; i++) {
+        for (int i = start; i <= end; i++) {
             run(i);
         }
     }

@@ -1,6 +1,9 @@
 package suic.days.day4;
 
+import com.google.common.collect.ImmutableSet;
 import suic.Puzzle;
+import suic.days.day8.Instruction;
+import suic.days.day8.Operation;
 import suic.util.FileUtils;
 
 import java.util.*;

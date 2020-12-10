@@ -2,6 +2,8 @@ package suic.days.day9;
 
 import com.google.common.base.Functions;
 import suic.Puzzle;
+import suic.days.day8.Instruction;
+import suic.days.day8.Operation;
 import suic.util.FileUtils;
 
 import java.util.*;
@@ -58,6 +60,7 @@ public class Day9 implements Puzzle<Long, Long> {
         }
         return -1L;
     }
+
 
     private long part2Sum(List<Long> numbers, long target) {
         int i = 0;
