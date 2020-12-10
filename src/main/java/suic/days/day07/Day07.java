@@ -6,6 +6,7 @@ import suic.util.FileUtils;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class Day07 implements Puzzle<String, Integer> {
 
@@ -63,9 +64,7 @@ public class Day07 implements Puzzle<String, Integer> {
         return node.getParents()
                 .stream()
                 .mapToInt(this::calculatePart1)
-                .map(x -> x + 1)
-                .reduce(Integer::sum)
-                .orElse(-1);
+                .map(x -> x + 1).sum();
     }
 
     private int calculatePart2(BagNode node) {
