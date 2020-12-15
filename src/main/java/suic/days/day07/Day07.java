@@ -63,14 +63,6 @@ public class Day07 implements Puzzle<String, Integer> {
     }
 
     private int calculatePart1(BagNode node) {
-        List<String> sorted = Stream.of("65", "123")
-                .sorted(Comparator.naturalOrder()).collect(Collectors.toList());
-        System.out.println("Sorted: " + sorted);
-        List<String> test = new ArrayList<>();
-        test.add("65");
-        test.add("123");
-        test.sort(String.CASE_INSENSITIVE_ORDER);
-        System.out.println("Test: " + test);
         return node.getParents()
                 .stream()
                 .mapToInt(this::calculatePart1)
