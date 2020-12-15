@@ -28,12 +28,6 @@ public class Day10 implements Puzzle<Long, Long> {
         IntStream.range(1, input.size()).boxed()
                 .map(i -> (int) (input.get(i) - input.get(i - 1) - 1))
                 .forEach(i -> count[i]++);
-        Map<Long, List<Long>> stepCounts = StreamEx.ofSubLists(input, 2)
-                .mapToLong(sublist -> sublist.get(1) - sublist.get(0)).mapToEntry(x -> x, x -> (long) Collections.frequency(input,x)).grouping();
-        System.out.println(stepCounts.get(1L).size() + " | " + stepCounts.get(3L).size());
-        long result = stepCounts.get(1L).size() * stepCounts.get(3L).size();
-        System.out.println("Result = " + result);
-        System.out.println(Arrays.toString(count));
         return (count[0] + 1) * (count[2] + 1);
     }
 
@@ -42,6 +36,7 @@ public class Day10 implements Puzzle<Long, Long> {
 
     @Override
     public Long solvePart2() {
+        long start = System.currentTimeMillis();
         List<Long> input = parse();
         long max = input.stream().mapToLong(Long::longValue).max().orElse(-1L);
         Map<Long, Long> map = new HashMap<>();
@@ -55,6 +50,7 @@ public class Day10 implements Puzzle<Long, Long> {
             list.forEach(i -> map.put(current + i, map.get(current + i) + map.get(current)));
             current = current + list.get(0);
         }
+        System.out.println("End = " + (System.currentTimeMillis() - start));
         return map.get(max);
     }
 }
