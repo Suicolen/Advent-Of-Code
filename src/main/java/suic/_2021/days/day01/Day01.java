@@ -10,6 +10,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.BinaryOperator;
+import java.util.function.LongBinaryOperator;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -24,6 +27,7 @@ public class Day01 implements Puzzle<Long, Long> {
                         .toList());
     }
 
+
     public Long solvePart1() {
         List<Long> input = parse();
         return LongStreamEx.of(input).pairMap((a, b) -> b > a ? 1 : 0).sum();
@@ -31,10 +35,6 @@ public class Day01 implements Puzzle<Long, Long> {
 
     public Long solvePart2() {
         List<Long> input = parse();
-        return IntStream.range(0, input.size() - 3).filter(i -> {
-            long currentDepth = input.get(i) + input.get(i + 1) + input.get(i + 2);
-            long nextDepth = input.get(i + 1) + input.get(i + 2) + input.get(i + 3);
-            return nextDepth > currentDepth;
-        }).count();
+        return IntStream.range(0, input.size() - 3).filter(i -> input.get(i) < input.get(i + 3)).count();
     }
 }
