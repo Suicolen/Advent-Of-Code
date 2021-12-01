@@ -1,6 +1,8 @@
 package suic._2021.days.day01;
 
 import one.util.streamex.IntStreamEx;
+import one.util.streamex.LongStreamEx;
+import one.util.streamex.StreamEx;
 import suic.Puzzle;
 import suic.util.FileUtils;
 
@@ -11,30 +13,28 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Day01 implements Puzzle<Integer, Long> {
+public class Day01 implements Puzzle<Long, Long> {
 
     @Override
-    public List<Integer> parse() {
+    public List<Long> parse() {
         return FileUtils.readResource(getClass().getSimpleName() + "Input.txt")
                 .stream()
-                .map(Integer::parseInt)
+                .map(Long::parseLong)
                 .collect(Collectors
                         .toList());
     }
 
     public Long solvePart1() {
-        List<Integer> input = parse();
-        return IntStreamEx.of(input).pairMap((a, b) -> a > b ? 1 : 0).filter(i -> i == 0).count();
+        List<Long> input = parse();
+        return LongStreamEx.of(input).pairMap((a, b) -> b > a ? 1 : 0).sum();
     }
 
     public Long solvePart2() {
-        List<Integer> input = parse();
+        List<Long> input = parse();
         return IntStream.range(0, input.size() - 3).filter(i -> {
-            int currentDepth = input.get(i) + input.get(i + 1) + input.get(i + 2);
-            int nextDepth = input.get(i + 1) + input.get(i + 2) + input.get(i + 3);
+            long currentDepth = input.get(i) + input.get(i + 1) + input.get(i + 2);
+            long nextDepth = input.get(i + 1) + input.get(i + 2) + input.get(i + 3);
             return nextDepth > currentDepth;
         }).count();
-
     }
-
 }

@@ -1,5 +1,7 @@
 package suic.util;
 
+import suic.AdventCalender;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -11,7 +13,7 @@ public final class FileUtils {
 
     public static List<String> readResource(String path) {
         try {
-            return Files.readAllLines(Path.of(FileUtils.class.getResource("/" + path).toURI()));
+            return Files.readAllLines(Path.of(FileUtils.class.getResource("/" + AdventCalender.YEAR + "/" + path).toURI()));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
