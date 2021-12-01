@@ -20,13 +20,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/**
- * Unused atm
- * Credit: SizableShrimp
- */
-
 public class DataManager {
-    public static final String USER_AGENT = "Suic (+http://github.com/SizableShrimp/AdventOfCode2020)";
+    public static final String USER_AGENT = "TODO";
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private static String sessionCookie;
 
@@ -232,29 +227,4 @@ public class DataManager {
     /*public static Path getBasePathOutput(int day, Part part, String extension) {
         return Path.of("aoc_output", String.format("day%spart%s_%s.txt", AdventCalender.pad(day), part.num, extension));
     }*/
-
-    @Value
-    class Result {
-        String message;
-        boolean correct;
-        boolean invalid;
-    }
-
-    @Value
-    class Guess {
-        String guess;
-        String response;
-    }
-
-    @AllArgsConstructor
-    enum Part {
-        FIRST(1),
-        SECOND(2),
-        /**
-         * Sends the second part if both parts are non-null, otherwise the first part
-         */
-        AUTO(-1);
-
-        private final int num;
-    }
 }

@@ -1,0 +1,10 @@
+package suic._2020.days.day02;
+
+import java.util.function.Function;
+
+public class CharWrapper implements Function<String, Character> {
+    @Override
+    public Character apply(String str) {
+        return str.charAt(0);
+    }
+}

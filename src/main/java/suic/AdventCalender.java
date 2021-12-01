@@ -1,32 +1,11 @@
 package suic;
 
-/* Copyright (c) 2020 SizableShrimp.
- * This file is provided under version 3 of the GNU Lesser General Public License.
- * AdventOfCode2020
- * Copyright (C) 2020 SizableShrimp
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+import java.util.Random;
 
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-// modified version of SizableShrimp's Main class
 public class AdventCalender {
 
-    private static final String BASE_PACKAGE = AdventCalender.class.getPackageName() + ".days.";
-    public static final int YEAR = 2020;
+    public static final int YEAR = 2021;
+    private static final String BASE_PACKAGE = AdventCalender.class.getPackageName() + "." +  "_" + YEAR + ".days.";
 
 
     public static void main(String[] args) {
@@ -35,7 +14,8 @@ public class AdventCalender {
 
     private static void run() {
         System.out.println("-----------------------------------------------------------");
-        run(15);
+        run(1);
+
     }
 
     private static void run(int dayOfMonth) {
