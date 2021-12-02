@@ -14,22 +14,15 @@ public class Day02 implements Puzzle<String, Long> {
 
 
     public Long solvePart1() {
-        List<String> input = parse();
-        long horizontal = 0;
-        long depth = 0;
-        for (String str : input) {
-            String[] data = str.split(" ");
-            int value = Integer.parseInt(data[1]);
-            switch (data[0]) {
-                case "forward" -> horizontal += value;
-                case "down" -> depth += value;
-                case "up" -> depth -= value;
-            }
-        }
-        return horizontal * depth;
+        return solve(false);
     }
 
     public Long solvePart2() {
+        return solve(true);
+    }
+
+    //java please don't hate me for skipping braces :(
+    public Long solve(boolean aiming) {
         List<String> input = parse();
         long horizontal = 0;
         long depth = 0;
@@ -40,10 +33,14 @@ public class Day02 implements Puzzle<String, Long> {
             switch (data[0]) {
                 case "forward" -> {
                     horizontal += value;
-                    depth += value * aim;
+                    if (aiming) depth += value * aim;
                 }
-                case "down" -> aim += value;
-                case "up" -> aim -= value;
+                case "down" -> {
+                    if(aiming) aim += value; else depth += value;
+                }
+                case "up" -> {
+                    if(aiming) aim -= value; else depth -= value;
+                }
             }
         }
         return horizontal * depth;
