@@ -1,8 +1,6 @@
 package suic;
 
-import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
-import lombok.Value;
 
 import java.io.IOException;
 import java.net.URI;
@@ -15,10 +13,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import suic._2020.Puzzle;
 
 public class DataManager {
     public static final String USER_AGENT = "TODO";

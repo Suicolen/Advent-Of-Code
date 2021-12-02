@@ -1,6 +1,6 @@
 package suic._2020.days.day16;
 
-import suic.Puzzle;
+import suic._2020.Puzzle;
 import suic.util.FileUtils;
 import suic.util.MatchWrapper;
 import suic.util.Parser;

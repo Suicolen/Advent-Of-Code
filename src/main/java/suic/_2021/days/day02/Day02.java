@@ -1,49 +1,51 @@
 package suic._2021.days.day02;
 
-import suic.Puzzle;
+import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
 import java.util.*;
 
 public class Day02 implements Puzzle<String, Long> {
 
+    private List<String> input;
+    private long horizontal = 0;
+    private long depth = 0;
+    private long aim = 0;
+
     @Override
-    public List<String> parse() {
-        return FileUtils.readResource(getClass().getSimpleName() + "Input.txt");
+    public void init() {
+        parse();
+        solve();
+    }
+
+    @Override
+    public void parse() {
+        input = FileUtils.readResource(getClass().getSimpleName() + "Input.txt");
     }
 
 
     public Long solvePart1() {
-        return solve(false);
+        return aim * horizontal;
     }
 
     public Long solvePart2() {
-        return solve(true);
+        return depth * horizontal;
     }
 
-    //java please don't hate me for skipping braces :(
-    public Long solve(boolean aiming) {
-        List<String> input = parse();
-        long horizontal = 0;
-        long depth = 0;
-        long aim = 0;
+    public void solve() {
         for (String str : input) {
             String[] data = str.split(" ");
             int value = Integer.parseInt(data[1]);
             switch (data[0]) {
                 case "forward" -> {
                     horizontal += value;
-                    if (aiming) depth += value * aim;
+                    depth += value * aim;
                 }
-                case "down" -> {
-                    if(aiming) aim += value; else depth += value;
-                }
-                case "up" -> {
-                    if(aiming) aim -= value; else depth -= value;
-                }
+                case "down" -> aim += value;
+                case "up" -> aim -= value;
             }
         }
-        return horizontal * depth;
+
     }
 
 }

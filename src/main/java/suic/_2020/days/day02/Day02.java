@@ -1,7 +1,7 @@
 package suic._2020.days.day02;
 
 import com.svetylkovo.rojo.Rojo;
-import suic.Puzzle;
+import suic._2020.Puzzle;
 import suic.util.FileUtils;
 
 import java.util.List;

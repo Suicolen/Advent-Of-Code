@@ -1,6 +1,6 @@
 package suic._2020.days.day18;
 
-import suic.Puzzle;
+import suic._2020.Puzzle;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
