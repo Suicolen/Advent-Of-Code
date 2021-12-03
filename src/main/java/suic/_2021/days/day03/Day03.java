@@ -28,6 +28,7 @@ public class Day03 implements Puzzle<String, Long> {
         IntStream.range(0, length).forEach(i -> {
             long zeros = input.stream().filter(l -> l.charAt(i) == '0').count();
             long ones = input.stream().filter(l -> l.charAt(i) == '1').count();
+
             if (zeros > ones) {
                 gamma.append('0');
                 epsilon.append('1');
@@ -44,15 +45,13 @@ public class Day03 implements Puzzle<String, Long> {
         List<String> oxygen = new ArrayList<>(input);
         List<String> co2 = new ArrayList<>(input);
         IntStream.range(0, length).takeWhile(i -> oxygen.size() != 1).forEach(i -> {
-            long zeros = oxygen.stream().filter(l -> l.charAt(i) == '0').count();
-            long ones = oxygen.stream().filter(l -> l.charAt(i) == '1').count();
-            oxygen.removeIf(l -> l.charAt(i) == (zeros > ones ? '1' : '0'));
+            long count = oxygen.stream().mapToLong(l -> l.charAt(i) == '1' ? 1 : -1).sum();
+            oxygen.removeIf(l -> l.charAt(i) == (count < 0 ? '1' : '0'));
         });
 
         IntStream.range(0, length).takeWhile(i -> co2.size() != 1).forEach(i -> {
-            long zeros = co2.stream().filter(l -> l.charAt(i) == '0').count();
-            long ones = co2.stream().filter(l -> l.charAt(i) == '1').count();
-            co2.removeIf(l -> l.charAt(i) == (zeros > ones ? '0' : '1'));
+            long count = co2.stream().mapToLong(l -> l.charAt(i) == '1' ? 1 : -1).sum();
+            co2.removeIf(l -> l.charAt(i) == (count < 0 ? '0' : '1'));
         });
 
         return Long.parseLong(oxygen.get(0), 2) * Long.parseLong(co2.get(0), 2);
