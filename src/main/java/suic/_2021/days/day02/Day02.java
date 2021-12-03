@@ -45,7 +45,6 @@ public class Day02 implements Puzzle<String, Long> {
                 case "up" -> aim -= value;
             }
         }
-
     }
 
 }

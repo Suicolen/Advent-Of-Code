@@ -5,6 +5,7 @@ import lombok.experimental.UtilityClass;
 import suic.AdventCalender;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;

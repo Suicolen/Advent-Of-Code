@@ -14,7 +14,7 @@ public class AdventCalender {
 
     private static void run() {
         System.out.println("-----------------------------------------------------------");
-        run(2);
+        run(3);
 
     }
 
