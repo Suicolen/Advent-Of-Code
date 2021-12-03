@@ -26,7 +26,7 @@ public class Day03 implements Puzzle<String, Long> {
         StringBuilder gamma = new StringBuilder();
         StringBuilder epsilon = new StringBuilder();
         IntStream.range(0, length).forEach(i -> {
-            long count = input.stream().mapToLong(l -> l.charAt(i) == '1' ? 1 : -1).sum();
+            long count = computeCount(input, i);
             if (count < 0) {
                 gamma.append('0');
                 epsilon.append('1');
