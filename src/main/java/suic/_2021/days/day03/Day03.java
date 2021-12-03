@@ -43,15 +43,19 @@ public class Day03 implements Puzzle<String, Long> {
         List<String> oxygen = new ArrayList<>(input);
         List<String> co2 = new ArrayList<>(input);
         IntStream.range(0, length).takeWhile(i -> oxygen.size() != 1).forEach(i -> {
-            long count = oxygen.stream().mapToLong(l -> l.charAt(i) == '1' ? 1 : -1).sum();
+            long count = computeCount(oxygen, i);
             oxygen.removeIf(l -> l.charAt(i) == (count < 0 ? '1' : '0'));
         });
 
         IntStream.range(0, length).takeWhile(i -> co2.size() != 1).forEach(i -> {
-            long count = co2.stream().mapToLong(l -> l.charAt(i) == '1' ? 1 : -1).sum();
+            long count = computeCount(co2, i);
             co2.removeIf(l -> l.charAt(i) == (count < 0 ? '0' : '1'));
         });
 
         return Long.parseLong(oxygen.get(0), 2) * Long.parseLong(co2.get(0), 2);
+    }
+
+    private long computeCount(List<String> lines, int index) {
+        return lines.stream().mapToLong(l -> l.charAt(index) == '1' ? 1 : -1).sum();
     }
 }
