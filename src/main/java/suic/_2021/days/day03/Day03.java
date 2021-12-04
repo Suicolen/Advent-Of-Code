@@ -1,12 +1,14 @@
 package suic._2021.days.day03;
 
+import one.util.streamex.IntStreamEx;
+import org.apache.commons.lang3.tuple.Pair;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
 import java.util.*;
 import java.util.stream.IntStream;
 
-public class Day03 implements Puzzle<String, Long> {
+public class Day03 implements Puzzle<Long> {
 
     private List<String> input;
 
@@ -57,6 +59,8 @@ public class Day03 implements Puzzle<String, Long> {
         return Long.parseLong(oxygen.get(0), 2) * Long.parseLong(co2.get(0), 2);
     }
 
+
+
     private void filter(List<String> lines, int index, boolean oxygen) {
         long count = computeCount(lines, index);
         if (oxygen) { // if else cuz cba with nested ternary
@@ -64,6 +68,7 @@ public class Day03 implements Puzzle<String, Long> {
         } else {
             lines.removeIf(l -> l.charAt(index) == (count < 0 ? '0' : '1'));
         }
+
     }
 
     private long computeCount(List<String> lines, int index) {

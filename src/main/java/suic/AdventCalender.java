@@ -14,7 +14,7 @@ public class AdventCalender {
 
     private static void run() {
         System.out.println("-----------------------------------------------------------");
-        run(3);
+        run(4);
 
     }
 
@@ -22,7 +22,7 @@ public class AdventCalender {
         try {
             Class<?> clazz = Class.forName(BASE_PACKAGE + pad(dayOfMonth));
             System.out.println("Day " + dayOfMonth + " Solution");
-            Puzzle<?, ?> puzzle = (Puzzle<?, ?>) clazz.getDeclaredConstructor().newInstance(); // 2021 for now
+            Puzzle<?> puzzle = (Puzzle<?>) clazz.getDeclaredConstructor().newInstance(); // 2021 for now
             puzzle.init();
             System.out.println("Part 1 result = " + puzzle.solvePart1());
             System.out.println("Part 2 result = " + puzzle.solvePart2());

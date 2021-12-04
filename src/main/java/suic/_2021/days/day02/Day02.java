@@ -5,7 +5,7 @@ import suic.util.FileUtils;
 
 import java.util.*;
 
-public class Day02 implements Puzzle<String, Long> {
+public class Day02 implements Puzzle<Long> {
 
     private List<String> input;
     private long horizontal = 0;

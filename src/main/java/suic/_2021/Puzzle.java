@@ -1,8 +1,6 @@
 package suic._2021;
 
-import java.util.List;
-
-public interface Puzzle<I, O> {
+public interface Puzzle<O> {
     void parse();
     O solvePart1();
     O solvePart2();

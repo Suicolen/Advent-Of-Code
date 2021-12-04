@@ -7,7 +7,7 @@ import suic.util.FileUtils;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Day01 implements Puzzle<Long, Long> {
+public class Day01 implements Puzzle<Long> {
 
     private List<Long> input;
 
