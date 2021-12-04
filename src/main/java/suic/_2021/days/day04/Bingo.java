@@ -28,15 +28,16 @@ public record Bingo(List<Integer> numbers, List<Cell[][]> boards) {
     }
 
     private boolean markCell(Cell[][] cells, int num) {
-        for (Cell[] outer : cells) {
-            for (Cell inner : outer) {
-                if (inner.getValue() == num) {
-                    inner.setMarked(true);
-                    return true;
-                }
-            }
+        Cell cell = Arrays.stream(cells)
+                .flatMap(Arrays::stream)
+                .filter(c -> c.getValue() == num)
+                .findFirst()
+                .orElse(null);
+        boolean exists = cell != null;
+        if (exists) {
+            cell.setMarked(true);
         }
-        return false;
+        return exists;
     }
 
     private boolean checkCells(Cell[][] cells) {
