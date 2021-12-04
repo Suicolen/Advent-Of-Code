@@ -29,11 +29,11 @@ public class Day04 implements Puzzle<Long> {
         String input = String.join("\n", this.input).trim();
         String[] data = input.split("\n\n");
         int[] numbers = Arrays.stream(data[0].split(",")).mapToInt(Integer::parseInt).toArray();
-        List<Cell[][]> grids = IntStream.range(1, data.length)
+        List<Cell[][]> boards = IntStream.range(1, data.length)
                 .mapToObj(i -> createCells(data[i]))
                 .toList();
         for (int num : numbers) {
-            for (Cell[][] cells : grids) {
+            for (Cell[][] cells : boards) {
                 if (markCell(cells, num) && checkCells(cells)) {
                     return computeResult(cells, num);
                 }
@@ -48,17 +48,17 @@ public class Day04 implements Puzzle<Long> {
         String input = String.join("\n", this.input).replaceAll(" +", " ");
         String[] data = input.split("\n\n");
         int[] numbers = Arrays.stream(data[0].split(",")).mapToInt(Integer::parseInt).toArray();
-        List<Cell[][]> cells = IntStream.range(1, data.length)
+        List<Cell[][]> boards = IntStream.range(1, data.length)
                 .mapToObj(i -> createCells(data[i]))
-                .collect(Collectors.toCollection(ArrayList::new)); // toCollection(..) as we're gonna modify the list
+                .collect(Collectors.toCollection(ArrayList::new)); // toCollection(...) as we're gonna modify the list
         for (int num : numbers) {
-            for (int i = 0; i < cells.size(); i++) {
-                Cell[][] cell = cells.get(i);
+            for (int i = 0; i < boards.size(); i++) {
+                Cell[][] cell = boards.get(i);
                 if (markCell(cell, num) && checkCells(cell)) {
-                    if (cells.size() == 1) {
+                    if (boards.size() == 1) {
                         return computeResult(cell, num);
                     } else {
-                        cells.remove(i--);
+                        boards.remove(i--);
                     }
                 }
             }
