@@ -29,9 +29,9 @@ public class Day04 implements Puzzle<Long> {
                 .collect(Collectors.joining("\n"))
                 .split("\n\n");
         numbers = Arrays.stream(input[0].split(",")).mapToInt(Integer::parseInt).boxed().toList();
-        boards = IntStream.range(1, input.length)
+        boards = IntStreamEx.range(1, input.length)
                 .mapToObj(i -> createCells(input[i]))
-                .collect(Collectors.toCollection(ArrayList::new)); // toCollection(...) as we're gonna modify the list in part 2
+                .toList();
         bingo = new Bingo(numbers, boards);
     }
 
