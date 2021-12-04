@@ -46,10 +46,10 @@ public class Day04 implements Puzzle<Long> {
     @Override
     public Long solvePart2() {
         String input = String.join("\n", this.input).replaceAll(" +", " ");
-        String[] split = input.split("\n\n");
-        int[] numbers = Arrays.stream(split[0].split(",")).mapToInt(Integer::parseInt).toArray();
-        List<Cell[][]> cells = IntStream.range(1, split.length)
-                .mapToObj(i -> createCells(split[i]))
+        String[] data = input.split("\n\n");
+        int[] numbers = Arrays.stream(data[0].split(",")).mapToInt(Integer::parseInt).toArray();
+        List<Cell[][]> cells = IntStream.range(1, data.length)
+                .mapToObj(i -> createCells(data[i]))
                 .collect(Collectors.toCollection(ArrayList::new)); // toCollection(..) as we're gonna modify the list
         for (int num : numbers) {
             for (int i = 0; i < cells.size(); i++) {
