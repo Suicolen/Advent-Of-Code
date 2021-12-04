@@ -1,5 +1,7 @@
 package suic._2021.days.day04;
 
+import one.util.streamex.IntStreamEx;
+import one.util.streamex.StreamEx;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
@@ -12,7 +14,8 @@ import java.util.stream.IntStream;
 
 public class Day04 implements Puzzle<Long> {
 
-    private String[] input;
+    private List<Integer> numbers;
+    private List<Cell[][]> boards;
 
     @Override
     public void init() {
@@ -21,18 +24,16 @@ public class Day04 implements Puzzle<Long> {
 
     @Override
     public void parse() {
-        input = FileUtils.readResourceAsStream(getClass().getSimpleName() + "Input.txt")
+        String[] input = FileUtils.readResourceAsStream(getClass().getSimpleName() + "Input.txt")
                 .collect(Collectors.joining("\n"))
                 .split("\n\n");
-
+        numbers = Arrays.stream(input[0].split(",")).mapToInt(Integer::parseInt).boxed().toList();
+        boards = IntStream.range(1, input.length)
+                .mapToObj(i -> createCells(input[i]))
+                .collect(Collectors.toCollection(ArrayList::new)); // toCollection(...) as we're gonna modify the list in part 2
     }
 
     public Long solvePart1() {
-
-        int[] numbers = Arrays.stream(input[0].split(",")).mapToInt(Integer::parseInt).toArray();
-        List<Cell[][]> boards = IntStream.range(1, input.length)
-                .mapToObj(i -> createCells(input[i]))
-                .toList();
         for (int num : numbers) {
             for (Cell[][] cells : boards) {
                 if (markCell(cells, num) && checkCells(cells)) {
@@ -40,16 +41,11 @@ public class Day04 implements Puzzle<Long> {
                 }
             }
         }
-
         return -1L;
     }
 
     @Override
     public Long solvePart2() {
-        int[] numbers = Arrays.stream(input[0].split(",")).mapToInt(Integer::parseInt).toArray();
-        List<Cell[][]> boards = IntStream.range(1, input.length)
-                .mapToObj(i -> createCells(input[i]))
-                .collect(Collectors.toCollection(ArrayList::new)); // toCollection(...) as we're gonna modify the list
         for (int num : numbers) {
             for (int i = 0; i < boards.size(); i++) {
                 Cell[][] cell = boards.get(i);
