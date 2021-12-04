@@ -29,7 +29,7 @@ public class Day04 implements Puzzle<Long> {
                 .toList();
         List<Cell[][]> boards = IntStreamEx.range(1, input.length)
                 .mapToObj(i -> createCells(input[i]))
-                .toList();
+                .toMutableList();
         bingo = new Bingo(numbers, boards);
     }
 
