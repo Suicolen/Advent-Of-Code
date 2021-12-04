@@ -16,6 +16,7 @@ public class Day04 implements Puzzle<Long> {
 
     private List<Integer> numbers;
     private List<Cell[][]> boards;
+    private Bingo bingo;
 
     @Override
     public void init() {
@@ -31,75 +32,16 @@ public class Day04 implements Puzzle<Long> {
         boards = IntStream.range(1, input.length)
                 .mapToObj(i -> createCells(input[i]))
                 .collect(Collectors.toCollection(ArrayList::new)); // toCollection(...) as we're gonna modify the list in part 2
+        bingo = new Bingo(numbers, boards);
     }
 
     public Long solvePart1() {
-        for (int num : numbers) {
-            for (Cell[][] cells : boards) {
-                if (markCell(cells, num) && checkCells(cells)) {
-                    return computeResult(cells, num);
-                }
-            }
-        }
-        return -1L;
+        return bingo.solve(true);
     }
 
     @Override
     public Long solvePart2() {
-        for (int num : numbers) {
-            for (int i = 0; i < boards.size(); i++) {
-                Cell[][] cell = boards.get(i);
-                if (markCell(cell, num) && checkCells(cell)) {
-                    if (boards.size() == 1) {
-                        return computeResult(cell, num);
-                    } else {
-                        boards.remove(i--);
-                    }
-                }
-            }
-        }
-
-        return -1L;
-    }
-
-    private long computeResult(Cell[][] cells, int num) {
-        long unmarkedSum = Arrays.stream(cells)
-                .flatMap(Arrays::stream)
-                .filter(Predicate.not(Cell::isMarked))
-                .mapToLong(Cell::getValue)
-                .sum();
-        return unmarkedSum * num;
-    }
-
-    private boolean markCell(Cell[][] cells, int num) {
-        for (Cell[] outer : cells) {
-            for (Cell inner : outer) {
-                if (inner.getValue() == num) {
-                    inner.setMarked(true);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean checkCells(Cell[][] cells) {
-        for (Cell[] cell : cells) {
-            if (Arrays.stream(cell).allMatch(Cell::isMarked)) {
-                return true;
-            }
-        }
-        for (int i = 0; i < cells[0].length; i++) {
-            if (isInvalid(cells, i)) {
-                continue;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isInvalid(Cell[][] cells, int i) {
-        return IntStream.range(0, cells[i].length).anyMatch(j -> !cells[j][i].isMarked());
+        return bingo.solve(false);
     }
 
     private Cell[][] createCells(String str) {
