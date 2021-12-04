@@ -25,18 +25,17 @@ public class Day04 implements Puzzle<Long> {
 
     }
 
-
     public Long solvePart1() {
         String input = String.join("\n", this.input).trim();
         String[] data = input.split("\n\n");
         int[] numbers = Arrays.stream(data[0].split(",")).mapToInt(Integer::parseInt).toArray();
-        List<Cell[][]> cells = IntStream.range(1, data.length)
+        List<Cell[][]> grids = IntStream.range(1, data.length)
                 .mapToObj(i -> createCells(data[i]))
                 .toList();
         for (int num : numbers) {
-            for (Cell[][] cell : cells) {
-                if (markCell(cell, num) && checkCells(cell)) {
-                    return computeResult(cell, num);
+            for (Cell[][] cells : grids) {
+                if (markCell(cells, num) && checkCells(cells)) {
+                    return computeResult(cells, num);
                 }
             }
         }
