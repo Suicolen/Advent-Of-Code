@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Stream;
 
 @UtilityClass
 public class FileUtils {
@@ -17,6 +18,11 @@ public class FileUtils {
     @SneakyThrows(IOException.class)
     public static List<String> readResource(String path) {
         return Files.readAllLines(getPath(path));
+    }
+
+    @SneakyThrows(IOException.class)
+    public static Stream<String> readResourceAsStream(String path) {
+        return Files.lines(getPath(path));
     }
 
     @SneakyThrows(IOException.class)
