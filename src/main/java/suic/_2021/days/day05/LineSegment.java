@@ -50,8 +50,7 @@ public record LineSegment(Point start, Point end) {
         int endX = end.x() + dx;
         int x = start.x();
         int y = start.y();
-        Stream.iterate(new int[]{x, y}, p -> p[0] != endX, p -> new int[]{p[0] + dx, p[1] + dy})
-                .map(p -> new Point(p[0], p[1]))
+        Stream.iterate(new Point(x, y), p -> p.x() != endX, p -> new Point(p.x() + dx, p.y() + dy))
                 .filter(not(visited::add))
                 .forEach(overlaps::add);
     }
