@@ -1,10 +1,5 @@
 package suic._2021.days.day05;
 
-import com.svetylkovo.rojo.Rojo;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import org.checkerframework.checker.units.qual.A;
-import suic._2020.days.day02.Entry;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
 

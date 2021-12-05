@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.lang.Math.*;
+import static java.util.function.Predicate.not;
 
 public record LineSegment(Point start, Point end) {
 
@@ -29,7 +30,7 @@ public record LineSegment(Point start, Point end) {
         int y = start.y();
         IntStream.rangeClosed(minX, maxX)
                 .mapToObj(x -> new Point(x, y))
-                .filter(Predicate.not(visited::add))
+                .filter(not(visited::add))
                 .forEach(overlaps::add);
     }
 
@@ -39,7 +40,7 @@ public record LineSegment(Point start, Point end) {
         int x = start.x();
         IntStream.rangeClosed(minY, maxY)
                 .mapToObj(y -> new Point(x, y))
-                .filter(Predicate.not(visited::add))
+                .filter(not(visited::add))
                 .forEach(overlaps::add);
     }
 
@@ -51,7 +52,7 @@ public record LineSegment(Point start, Point end) {
         int y = start.y();
         Stream.iterate(new int[]{x, y}, p -> p[0] != endX, p -> new int[]{p[0] + dx, p[1] + dy})
                 .map(p -> new Point(p[0], p[1]))
-                .filter(Predicate.not(visited::add))
+                .filter(not(visited::add))
                 .forEach(overlaps::add);
     }
 }
