@@ -1,6 +1,7 @@
 package suic._2021.days.day05;
 
 import java.util.Set;
+import java.util.Vector;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;

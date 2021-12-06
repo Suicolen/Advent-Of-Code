@@ -11,7 +11,7 @@ import static java.lang.Integer.parseInt;
 
 public class Day05 implements Puzzle<Integer> {
 
-    private static final Pattern LINE_SEGMENT_PATTERN = Pattern.compile("(\\d+),(\\d+) -> (\\d+),(\\d+)");
+    private final Pattern LINE_SEGMENT_PATTERN = Pattern.compile("(\\d+),(\\d+) -> (\\d+),(\\d+)");
 
     private List<LineSegment> segments;
 
@@ -34,6 +34,7 @@ public class Day05 implements Puzzle<Integer> {
         return getOverlaps(false);
     }
 
+
     public Integer solvePart2() {
         return getOverlaps(true);
     }
@@ -44,6 +45,7 @@ public class Day05 implements Puzzle<Integer> {
         for (LineSegment segment : segments) {
             segment.populate(visited, overlaps, includeDiagonals);
         }
+
         return overlaps.size();
     }
 }
