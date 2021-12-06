@@ -6,7 +6,7 @@ Below is a table showing which statuses for each day of each year.
 - 🚧 means part one is done. Part two is either not started or has an incomplete implementation.
 - ✅ means fully implemented and working.
 
-| Days  | [2021][2021]   | [2020][2020]   |
+| Days  | [2020][2020]   | [2021][2021]   |
 |-------|--------------|--------------|
 |  1    | ✅           | ✅           |
 |  2    | ✅           | ✅           |
