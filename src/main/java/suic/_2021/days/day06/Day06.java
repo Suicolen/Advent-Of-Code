@@ -4,10 +4,6 @@ import one.util.streamex.LongStreamEx;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 public class Day06 implements Puzzle<Long> {
 
 
