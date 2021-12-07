@@ -1,8 +1,12 @@
 package suic._2021.days.day06;
 
 import one.util.streamex.LongStreamEx;
+import org.apache.commons.math3.linear.BlockRealMatrix;
+import org.apache.commons.math3.linear.DiagonalMatrix;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
+
+import java.util.Arrays;
 
 public class Day06 implements Puzzle<Long> {
 
@@ -17,7 +21,7 @@ public class Day06 implements Puzzle<Long> {
     @Override
     public void parse() {
         String input = FileUtils.readResource(getClass().getSimpleName() + "Input.txt")
-                .get(0); // theres only 1 line
+                .get(0);
         for (String s : input.split(",")) {
             int age = Integer.parseInt(s);
             fish[age]++;
@@ -26,16 +30,20 @@ public class Day06 implements Puzzle<Long> {
 
 
     public Long solvePart1() {
+        long start = System.nanoTime();
         for (int i = 0; i < 80; i++) {
             age();
         }
+        System.out.println("Took " + (System.nanoTime() - start) + "ns");
         return LongStreamEx.of(fish).sum();
     }
 
     public Long solvePart2() {
+        long start = System.nanoTime();
         for (int i = 80; i < 256; i++) { // this will work because we'll always call part 1 first
             age();
         }
+        System.out.println("Took " + (System.nanoTime() - start) + "ns");
 
         return LongStreamEx.of(fish).sum();
     }
