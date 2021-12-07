@@ -31,12 +31,18 @@ public class Day05 implements Puzzle<Integer> {
 
 
     public Integer solvePart1() {
-        return getOverlaps(false);
+        long start = System.nanoTime();
+        int result = getOverlaps(false);
+        System.out.println("Took " + (System.nanoTime() - start) + "ns for part 1");
+        return result;
     }
 
 
     public Integer solvePart2() {
-        return getOverlaps(true);
+        long start = System.nanoTime();
+        int result = getOverlaps(true);
+        System.out.println("Took " + (System.nanoTime() - start) + "ns for part 2");
+        return result;
     }
 
     private int getOverlaps(boolean includeDiagonals) {

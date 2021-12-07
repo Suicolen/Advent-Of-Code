@@ -44,7 +44,6 @@ public class Day06 implements Puzzle<Long> {
             age();
         }
         System.out.println("Took " + (System.nanoTime() - start) + "ns");
-
         return LongStreamEx.of(fish).sum();
     }
 
