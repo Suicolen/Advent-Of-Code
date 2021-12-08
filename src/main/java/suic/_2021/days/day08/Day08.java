@@ -14,7 +14,6 @@ public class Day08 implements Puzzle<Long> {
     @Override
     public void init() {
         parse();
-
     }
 
     @Override
@@ -113,19 +112,19 @@ public class Day08 implements Puzzle<Long> {
         }
     }
 
-    public String sort(String digits) {
+    private String sort(String digits) {
         return IntStreamEx.ofChars(digits).sorted().charsToString();
     }
 
-    public boolean isNine(String[] digits, String patterns) {
+    private boolean isNine(String[] digits, String patterns) {
         return toCharStream(digits[4]).allMatch(c -> patterns.contains(c.toString()));
     }
 
-    public boolean isZeroOrThree(String[] digits, String patterns) {
+    private boolean isZeroOrThree(String[] digits, String patterns) {
         return toCharStream(digits[1]).allMatch(c -> patterns.contains(c.toString()));
     }
 
-    public boolean isFive(String[] digits, String patterns) {
+    private boolean isFive(String[] digits, String patterns) {
         return toCharStream(digits[6]).filter(c -> !patterns.contains(c.toString())).count() == 1;
     }
 
