@@ -47,55 +47,69 @@ public class Day08 implements Puzzle<Long> {
         for (Data data : input) {
             String[] patterns = data.patterns;
             String[] output = data.output;
-            for (String pattern : patterns) {
-                switch (pattern.length()) {
-                    case 2 -> digits[1] = pattern;
-                    case 3 -> digits[7] = pattern;
-                    case 4 -> digits[4] = pattern;
-                    case 7 -> digits[8] = pattern;
-                }
-            }
-            for (String pattern : patterns) {
-                if (pattern.length() == 6) {
-                    if (isNine(digits, pattern)) {
-                        digits[9] = pattern;
-                    } else if (isZeroOrThree(digits, pattern)) {
-                        digits[0] = pattern;
-                    } else {
-                        digits[6] = pattern;
-                    }
-                }
-            }
-
-            for (String pattern : patterns) {
-                if (pattern.length() == 5) {
-                    if (isZeroOrThree(digits, pattern)) {
-                        digits[3] = pattern;
-                    } else if (isFive(digits, pattern)) {
-                        digits[5] = pattern;
-                    } else {
-                        digits[2] = pattern;
-                    }
-                }
-            }
+            getKnownValues(digits, patterns);
+            findOfLengthSix(digits, patterns);
+            findOfLengthFive(digits, patterns);
 
             for (int i = 0; i < 10; i++) {
                 digits[i] = sort(digits[i]);
             }
 
-            int number = 0;
-            for (String s : output) {
-                String sorted = sort(s);
-                for (int i = 0; i < 10; i++) {
-                    if (digits[i].equals(sorted)) {
-                        number = (number * 10) + i;
-                    }
-                }
-            }
-
-            sum += number;
+            sum += compute(output, digits);
         }
         return sum;
+    }
+
+    private int compute(String[] output, String[] sortedDigits) {
+        int number = 0;
+        for (String s : output) {
+            String sorted = sort(s);
+            for (int i = 0; i < 10; i++) {
+                if (sortedDigits[i].equals(sorted)) {
+                    number = (number * 10) + i;
+                }
+            }
+        }
+        return number;
+    }
+
+    private void findOfLengthSix(String[] digits, String[] patterns) {
+        for (String pattern : patterns) {
+            if (pattern.length() == 6) {
+                if (isNine(digits, pattern)) {
+                    digits[9] = pattern;
+                } else if (isZeroOrThree(digits, pattern)) {
+                    digits[0] = pattern;
+                } else {
+                    digits[6] = pattern;
+                }
+            }
+        }
+    }
+
+    private void findOfLengthFive(String[] digits, String[] patterns) {
+        for (String pattern : patterns) {
+            if (pattern.length() == 5) {
+                if (isZeroOrThree(digits, pattern)) {
+                    digits[3] = pattern;
+                } else if (isFive(digits, pattern)) {
+                    digits[5] = pattern;
+                } else {
+                    digits[2] = pattern;
+                }
+            }
+        }
+    }
+
+    private void getKnownValues(String[] digits, String[] patterns) {
+        for (String pattern : patterns) {
+            switch (pattern.length()) {
+                case 2 -> digits[1] = pattern;
+                case 3 -> digits[7] = pattern;
+                case 4 -> digits[4] = pattern;
+                case 7 -> digits[8] = pattern;
+            }
+        }
     }
 
     public String sort(String digits) {
