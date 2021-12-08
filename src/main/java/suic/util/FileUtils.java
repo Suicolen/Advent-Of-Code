@@ -21,6 +21,11 @@ public class FileUtils {
     }
 
     @SneakyThrows(IOException.class)
+    public static String readResourceAsString(String path) {
+        return Files.readString(getPath(path));
+    }
+
+    @SneakyThrows(IOException.class)
     public static Stream<String> readResourceAsStream(String path) {
         return Files.lines(getPath(path));
     }

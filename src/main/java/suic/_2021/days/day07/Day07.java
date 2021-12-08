@@ -36,7 +36,6 @@ public class Day07 implements Puzzle<Long> {
     }
 
     public Long solve(boolean part2) {
-        long start = System.nanoTime();
         int low = IntStreamEx.of(positions).min().orElseThrow();
         int high = IntStreamEx.of(positions).max().orElseThrow();
         long best = Long.MAX_VALUE;
@@ -53,7 +52,6 @@ public class Day07 implements Puzzle<Long> {
                 best = target;
             }
         }
-        System.out.println("Took " + (System.nanoTime() - start) + "ns to compute " + "Part " + (part2 ? "2" : 1));
         return best;
     }
 
