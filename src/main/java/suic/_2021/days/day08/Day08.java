@@ -5,6 +5,8 @@ import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Day08 implements Puzzle<Long> {
@@ -18,9 +20,7 @@ public class Day08 implements Puzzle<Long> {
 
     @Override
     public void parse() {
-        List<String> lines = FileUtils.readResource(getClass().getSimpleName() + "Input.txt");
-
-        input = lines.stream().map(line -> {
+        input = FileUtils.readResourceAsStream(getClass().getSimpleName() + "Input.txt").map(line -> {
             String[] data = line.split(" \\| ");
             return new Data(data[0].split(" "), data[1].split(" "));
         }).toList();
@@ -38,7 +38,6 @@ public class Day08 implements Puzzle<Long> {
             }
             return count;
         }).sum();
-
     }
 
     public Long solvePart2() {
@@ -120,6 +119,7 @@ public class Day08 implements Puzzle<Long> {
         return toCharStream(digits[4]).allMatch(c -> patterns.contains(c.toString()));
     }
 
+
     private boolean isZeroOrThree(String[] digits, String patterns) {
         return toCharStream(digits[1]).allMatch(c -> patterns.contains(c.toString()));
     }
@@ -132,8 +132,7 @@ public class Day08 implements Puzzle<Long> {
         return str.chars().mapToObj(c -> (char) c);
     }
 
-    private record Data(String[] patterns, String[] output) { // dunno what else to call it
-    }
+    private record Data(String[] patterns, String[] output) {} // dunno what else to call it
 
 
 }
