@@ -29,7 +29,7 @@ public class Day08 implements Puzzle<Long> {
 
 
     public Long solvePart1() {
-        List<Integer> uniqueDigits = List.of(2, 3, 4, 7);
+        List<Integer> uniqueDigits = List.of(2, 3, 4, 7); // list is faster in this case(compared to a set)
         return input.stream().mapToLong(data -> {
             long count = 0;
             for (String str : data.output) {
