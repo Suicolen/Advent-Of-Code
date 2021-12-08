@@ -29,13 +29,12 @@ public class Day08 implements Puzzle<Long> {
 
     public Long solvePart1() {
         List<Integer> uniqueDigits = List.of(2, 3, 4, 7);
-        return input.stream().mapToLong(line -> {
+        return input.stream().mapToLong(data -> {
             long count = 0;
-            for (String str : line.output) {
+            for (String str : data.output) {
                 if (uniqueDigits.contains(str.length())) {
                     count++;
                 }
-
             }
             return count;
         }).sum();
