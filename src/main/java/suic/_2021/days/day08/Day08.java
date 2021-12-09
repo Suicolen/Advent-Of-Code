@@ -1,9 +1,12 @@
 package suic._2021.days.day08;
 
+import lombok.val;
 import one.util.streamex.IntStreamEx;
+import one.util.streamex.StreamEx;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
+import java.nio.file.Files;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -43,6 +46,8 @@ public class Day08 implements Puzzle<Long> {
     public Long solvePart2() {
         long sum = 0;
         String[] digits = new String[10];
+
+
         for (Data data : input) {
             String[] patterns = data.patterns;
             String[] output = data.output;
@@ -119,7 +124,6 @@ public class Day08 implements Puzzle<Long> {
         return toCharStream(digits[4]).allMatch(c -> patterns.contains(c.toString()));
     }
 
-
     private boolean isZeroOrThree(String[] digits, String patterns) {
         return toCharStream(digits[1]).allMatch(c -> patterns.contains(c.toString()));
     }
@@ -133,6 +137,5 @@ public class Day08 implements Puzzle<Long> {
     }
 
     private record Data(String[] patterns, String[] output) {} // dunno what else to call it
-
 
 }
