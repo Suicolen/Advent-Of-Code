@@ -1,5 +1,6 @@
 package suic._2021.days.day09;
 
+import javafx.geometry.Point2D;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
@@ -26,7 +27,7 @@ public class Day09 implements Puzzle<Integer> {
         input = new int[lines.size()][length];
         for (int x = 0; x < lines.size(); x++) {
             for (int y = 0; y < length; y++) {
-                input[x][y] = lines.get(x).charAt(y) - '0';
+                input[x][y] = Character.getNumericValue(lines.get(x).charAt(y));
             }
         }
 
