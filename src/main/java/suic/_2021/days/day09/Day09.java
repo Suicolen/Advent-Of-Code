@@ -36,7 +36,7 @@ public class Day09 implements Puzzle<Integer> {
 
 
     public Integer solvePart1() {
-        int total = 0;
+        int sum = 0;
         for (int x = 0; x < maxX; x++)
             for (int y = 0; y < maxY; y++) {
                 int cur = input[x][y];
@@ -45,10 +45,10 @@ public class Day09 implements Puzzle<Integer> {
                 int top = y > 0 ? input[x][y - 1] : HIGHEST;
                 int bottom = y < maxY - 1 ? input[x][y + 1] : HIGHEST;
                 if (cur < left && cur < right && cur < top && cur < bottom) {
-                    total += cur + 1;
+                    sum += cur + 1;
                 }
             }
-        return total;
+        return sum;
     }
 
     public Integer solvePart2() {
