@@ -36,36 +36,39 @@ public class Day09 implements Puzzle<Integer> {
 
 
     public Integer solvePart1() {
-        int sum = 0;
-        for (int x = 0; x < maxX; x++)
-            for (int y = 0; y < maxY; y++) {
-                int cur = input[x][y];
-                int left = x > 0 ? input[x - 1][y] : HIGHEST;
-                int right = x < maxX - 1 ? input[x + 1][y] : HIGHEST;
-                int top = y > 0 ? input[x][y - 1] : HIGHEST;
-                int bottom = y < maxY - 1 ? input[x][y + 1] : HIGHEST;
-                if (cur < left && cur < right && cur < top && cur < bottom) {
-                    sum += cur + 1;
-                }
-            }
-        return sum;
+        return solve(false);
     }
 
     public Integer solvePart2() {
-        List<Integer> basinSizes = new ArrayList<>();
+        return solve(true);
+    }
 
-        for (int x = 0; x < maxX; x++)
+    public int solve(boolean largestBasins) {
+        int sum = 0;
+        List<Integer> basinSizes = new ArrayList<>();
+        for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
-                int basinSize = computeBasinSize(x, y);
-                if (basinSize != 0) { // pointless to add
-                    basinSizes.add(basinSize);
+                if (largestBasins) {
+                    int basinSize = computeBasinSize(x, y);
+                    if (basinSize != 0) { // pointless to add
+                        basinSizes.add(basinSize);
+                    }
+                } else {
+                    int cur = input[x][y];
+                    int left = x > 0 ? input[x - 1][y] : HIGHEST;
+                    int right = x < maxX - 1 ? input[x + 1][y] : HIGHEST;
+                    int top = y > 0 ? input[x][y - 1] : HIGHEST;
+                    int bottom = y < maxY - 1 ? input[x][y + 1] : HIGHEST;
+                    if (cur < left && cur < right && cur < top && cur < bottom) {
+                        sum += cur + 1;
+                    }
                 }
             }
-
-        return basinSizes.stream()
+        }
+        return largestBasins ? basinSizes.stream()
                 .sorted(Comparator.reverseOrder())
                 .limit(3)
-                .reduce(1, (x, y) -> x * y);
+                .reduce(1, (x, y) -> x * y) : sum;
     }
 
     private int computeBasinSize(int x, int y) {
