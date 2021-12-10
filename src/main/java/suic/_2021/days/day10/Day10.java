@@ -19,10 +19,10 @@ public class Day10 implements Puzzle<Long> {
     }
 
     private final Map<Character, Bracket> scoreTable = Map.of(
-            ')', new Bracket('(', 3L),
-            ']', new Bracket('[', 57L),
-            '}', new Bracket('{', 1197L),
-            '>', new Bracket('<', 25137L)
+            ')', new Bracket('(', 3),
+            ']', new Bracket('[', 57),
+            '}', new Bracket('{', 1197),
+            '>', new Bracket('<', 25137)
     );
 
 
