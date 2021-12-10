@@ -36,7 +36,7 @@ public class Day10 implements Puzzle<Long> {
             Queue<Character> stack = Collections.asLifoQueue(new ArrayDeque<>());
             boolean incomplete = true;
             for (char c : line.toCharArray()) {
-                Data data = scoreTable.getOrDefault(c, null);
+                Data data = scoreTable.get(c);
                 if (data == null) {
                     stack.add(c);
                 } else {
