@@ -49,7 +49,7 @@ public class Day10 implements Puzzle<Long> {
             for (char c : line.toCharArray()) {
                 Bracket bracket = scoreTable.get(c);
                 if (bracket == null) {
-                    stack.add(c);
+                    stack.offer(c);
                 } else {
                     if (stack.poll() == bracket.opening) {
                         continue;
@@ -58,7 +58,6 @@ public class Day10 implements Puzzle<Long> {
                     score += bracket.score;
                     incomplete = false;
                     break;
-
                 }
             }
 

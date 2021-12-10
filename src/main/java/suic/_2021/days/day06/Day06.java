@@ -1,12 +1,18 @@
 package suic._2021.days.day06;
 
+import one.util.streamex.IntStreamEx;
 import one.util.streamex.LongStreamEx;
+import one.util.streamex.StreamEx;
 import org.apache.commons.math3.linear.BlockRealMatrix;
 import org.apache.commons.math3.linear.DiagonalMatrix;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Day06 implements Puzzle<Long> {
 
