@@ -1,9 +1,13 @@
 package suic._2021.days.day10;
 
+import javafx.collections.FXCollections;
+import javafx.collections.transformation.SortedList;
+import one.util.streamex.StreamEx;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class Day10 implements Puzzle<Long> {
 
@@ -14,6 +18,21 @@ public class Day10 implements Puzzle<Long> {
         parse();
     }
 
+    private final Map<Character, Bracket> scoreTable = Map.of(
+            ')', new Bracket('(', 3L),
+            ']', new Bracket('[', 57L),
+            '}', new Bracket('{', 1197L),
+            '>', new Bracket('<', 25137L)
+    );
+
+
+    private final Map<Character, Bracket> scoreTableInverted = Map.of(
+            '(', new Bracket(')', 1),
+            '[', new Bracket(']', 2),
+            '{', new Bracket('}', 3),
+            '<', new Bracket('>', 4)
+    );
+
     @Override
     public void parse() {
         input = FileUtils.readResource(getClass().getSimpleName() + "Input.txt");
@@ -22,29 +41,21 @@ public class Day10 implements Puzzle<Long> {
     private final List<Queue<Character>> incompleteLines = new ArrayList<>();
 
     public Long solvePart1() {
-
-        Map<Character, Data> scoreTable = Map.of(
-                ')', new Data('(', 3L),
-                ']', new Data('[', 57L),
-                '}', new Data('{', 1197L),
-                '>', new Data('<', 25137L)
-        );
-
         long score = 0;
 
         for (String line : input) {
             Queue<Character> stack = Collections.asLifoQueue(new ArrayDeque<>());
             boolean incomplete = true;
             for (char c : line.toCharArray()) {
-                Data data = scoreTable.get(c);
-                if (data == null) {
+                Bracket bracket = scoreTable.get(c);
+                if (bracket == null) {
                     stack.add(c);
                 } else {
-                    if (stack.poll() == data.opening) {
+                    if (stack.poll() == bracket.opening) {
                         continue;
                     }
 
-                    score += data.score;
+                    score += bracket.score;
                     incomplete = false;
                     break;
 
@@ -60,30 +71,20 @@ public class Day10 implements Puzzle<Long> {
     }
 
     public Long solvePart2() {
-
-        Map<Character, Data> scoreTable = Map.of(
-                '(', new Data(')', 1L),
-                '[', new Data(']', 2L),
-                '{', new Data('}', 3L),
-                '<', new Data('>', 4L)
-        );
-
-        List<Long> scores = new ArrayList<>();
-
-        for (Queue<Character> line : incompleteLines) {
-            long score = 0;
-            while (!line.isEmpty()) {
-                char c = line.poll();
-                Data data = scoreTable.get(c);
-                score = score * 5 + data.score;
-            }
-
-            scores.add(score);
-
-        }
-        return scores.stream().sorted().skip(scores.size() / 2).findFirst().orElseThrow();
+        return incompleteLines.stream()
+                .map(this::getScore)
+                .sorted()
+                .skip(incompleteLines.size() / 2)
+                .findFirst()
+                .orElseThrow();
     }
 
-    private record Data(char opening, long score) { // idk what to call it??????????
+    private long getScore(Queue<Character> line) {
+        return line.stream()
+                .map(c -> scoreTableInverted.get(c).score)
+                .reduce(0L, (acc, i) -> acc * 5 + i);
+    }
+
+    private record Bracket(char opening, long score) {
     }
 }
