@@ -1,6 +1,5 @@
 package suic._2021.days.day09;
 
-import javafx.geometry.Point2D;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
