@@ -34,7 +34,7 @@ public class Day11 implements Puzzle<Integer> {
     private int step(int step) {
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
-                process(x, y);
+                flash(x, y);
             }
         }
 
@@ -56,7 +56,7 @@ public class Day11 implements Puzzle<Integer> {
         return flashes;
     }
 
-    private void process(int x, int y) {
+    private void flash(int x, int y) {
         if (x < 0 || x >= maxX || y < 0 || y >= maxY) {
             return;
         }
@@ -67,7 +67,7 @@ public class Day11 implements Puzzle<Integer> {
             octopuses[x][y] = 10;
             for (int dx = x - 1; dx <= x + 1; dx++) {
                 for (int dy = y - 1; dy <= y + 1; dy++) {
-                    process(dx, dy);
+                    flash(dx, dy);
                 }
             }
         }
