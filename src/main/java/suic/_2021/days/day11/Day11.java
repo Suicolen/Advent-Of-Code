@@ -69,14 +69,11 @@ public class Day11 implements Puzzle<Integer> {
 
         if (octopuses[x][y] == 9) {
             octopuses[x][y] = 10;
-            process(x - 1, y - 1);
-            process(x - 1, y);
-            process(x - 1, y + 1);
-            process(x, y - 1);
-            process(x, y + 1);
-            process(x + 1, y - 1);
-            process(x + 1, y);
-            process(x + 1, y + 1);
+            for (int dx = x - 1; dx <= x + 1; dx++) {
+                for (int dy = y - 1; dy <= y + 1; dy++) {
+                    process(dx, dy);
+                }
+            }
         }
 
 
