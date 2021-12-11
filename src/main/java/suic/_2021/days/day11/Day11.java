@@ -61,13 +61,9 @@ public class Day11 implements Puzzle<Integer> {
             return;
         }
 
-
         if (octopuses[x][y] < 9) {
             octopuses[x][y]++;
-            return;
-        }
-
-        if (octopuses[x][y] == 9) {
+        } else if (octopuses[x][y] == 9) {
             octopuses[x][y] = 10;
             for (int dx = x - 1; dx <= x + 1; dx++) {
                 for (int dy = y - 1; dy <= y + 1; dy++) {
@@ -75,8 +71,6 @@ public class Day11 implements Puzzle<Integer> {
                 }
             }
         }
-
-
     }
 
     public Integer solvePart1() {
