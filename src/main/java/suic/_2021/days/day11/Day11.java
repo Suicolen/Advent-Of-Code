@@ -29,6 +29,17 @@ public class Day11 implements Puzzle<Integer> {
         maxX = octopuses.length;
         maxY = octopuses[0].length;
         size = maxX * maxY;
+
+        int warmups = 1000;
+        long[] times = new long[warmups];
+        for(int i = 0; i < warmups; i++) {
+            long start = System.nanoTime();
+            solvePart1();
+            solvePart2();
+            times[i] = System.nanoTime() - start;
+        }
+
+        System.out.println("Took " + times[warmups - 1] + "ns");
     }
 
     private int step(int step) {
