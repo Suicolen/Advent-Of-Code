@@ -1,6 +1,7 @@
 package suic._2021.days.day12;
 
-import com.google.common.collect.*;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.MultimapBuilder;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
@@ -10,78 +11,66 @@ import static java.util.function.Predicate.not;
 
 public class Day12 implements Puzzle<Long> {
 
-    private Multimap<String, String> graph;
+    private final Map<String, List<String>> graph = new HashMap<>(); // slower alternative(in this case) would be a MultiMap<String, String>
     private final String START = "start";
     private final String END = "end";
 
     @Override
     public void init() {
         parse();
+
+        for (int i = 1; i <= 100; i++) {
+            long start = System.nanoTime();
+            solvePart2();
+            System.out.println("Took " + (System.nanoTime() - start) / 1e+6 + "ms");
+        }
+
     }
 
     @Override
     public void parse() {
         List<String> lines = FileUtils.readResource(getClass().getSimpleName() + "Input.txt");
-        graph = MultimapBuilder.hashKeys().hashSetValues().build();
         for (String line : lines) {
             String[] sp = line.split("-");
-            // this is equivalent to using a Map<String, Set<String>> and doing:
-            //graph.computeIfAbsent(sp[0], k -> new HashSet<>()).add(sp[1]);
-            //graph.computeIfAbsent(sp[1], k -> new HashSet<>()).add(sp[0]);
-            graph.put(sp[0], sp[1]);
-            graph.put(sp[1], sp[0]);
+            graph.computeIfAbsent(sp[0], k -> new ArrayList<>()).add(sp[1]);
+            graph.computeIfAbsent(sp[1], k -> new ArrayList<>()).add(sp[0]);
         }
     }
 
-    protected long solve(boolean part2) {
-        Deque<Node> queue = new ArrayDeque<>();
-        Set<Node> validPaths = new HashSet<>();
+    private long solve(boolean part2) {
+        Deque<Node> nodes = new ArrayDeque<>();
+        nodes.push(new Node(START, "", null)); // current pos, path, small cave
+        int paths = 0;
+        while (!nodes.isEmpty()) {
+            Node currentPath = nodes.pop();
 
-        queue.add(new Node(List.of(START), false));
-
-        while (!queue.isEmpty()) {
-            Node node = queue.removeLast();
-            String current = node.paths.get(node.paths.size() - 1);
-
-            if (END.equals(current)) {
-                validPaths.add(node);
-                continue;
-            }
-
-            Collection<String> currentPaths = graph.get(current);
-            // using a list would be faster in this case(due to small number of elements) but using a set is still the right way
-            Set<String> possible = new HashSet<>();
-            Set<String> secondSmallPossibles = node.secondSmall ? null : new HashSet<>();
-
-            for (String cave : currentPaths) {
-                if (START.equals(cave)) {
+            for (String current : graph.get(currentPath.currentPos)) {
+                if (current.equals(END)) { // visited end
+                    paths++;
                     continue;
                 }
 
-                if (node.paths.contains(cave) && cave.toLowerCase().equals(cave)) {
-                    if (secondSmallPossibles != null) {
-                        secondSmallPossibles.add(cave);
+                if (current.equals(START)) { // ignore the start node
+                    continue;
+                }
+
+                String path = currentPath.path;
+                String smallCave = currentPath.smallCave;
+                if (current.toLowerCase().equals(current)) {// small cave
+                    if (!path.contains(current)) { // not visited yet
+                        nodes.add(new Node(current, path + current, smallCave));
+                    } else if (part2 && smallCave == null) {
+                        nodes.add(new Node(current, path + current, current));
                     }
-                    continue;
+                } else {
+                    nodes.add(new Node(current, path + current, smallCave));
                 }
-                possible.add(cave);
-            }
-
-            if (secondSmallPossibles != null) {
-                for (String cave : secondSmallPossibles) {
-                    List<String> newPath = copyWith(node.paths, cave);
-                    queue.add(new Node(newPath, true));
-                }
-            }
-
-            for (String cave : possible) {
-                List<String> newPath = copyWith(node.paths, cave);
-                queue.add(new Node(newPath, node.secondSmall));
             }
         }
-
-        return part2 ? validPaths.size() : computePart1Count(validPaths);
+        return paths;
     }
+
+    private record Node(String currentPos, String path, String smallCave) {}
 
     @Override
     public Long solvePart1() {
@@ -91,18 +80,5 @@ public class Day12 implements Puzzle<Long> {
     @Override
     public Long solvePart2() {
         return solve(true);
-    }
-
-    private long computePart1Count(Set<Node> validPaths) {
-        return validPaths.stream().filter(not(Node::secondSmall)).count();
-    }
-
-    private List<String> copyWith(List<String> original, String element) {
-        List<String> copy = new ArrayList<>(original);
-        copy.add(element);
-        return copy;
-    }
-
-    private record Node(List<String> paths, boolean secondSmall) {
     }
 }
