@@ -21,7 +21,7 @@ public class Day12 implements Puzzle<Long> {
 
         for (int i = 1; i <= 100; i++) {
             long start = System.nanoTime();
-            solvePart2();
+            solvePart1();
             System.out.println("Took " + (System.nanoTime() - start) / 1e+6 + "ms");
         }
 
