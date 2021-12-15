@@ -1,6 +1,5 @@
 package suic._2021.days.day15;
 
-
 import suic._2021.Puzzle;
 import suic._2021.days.day05.Point;
 import suic.util.FileUtils;
@@ -44,20 +43,22 @@ public class Day15 implements Puzzle<Integer> {
     private int solve(boolean part2) { // dijkstra
         PriorityQueue<Node> pq = new PriorityQueue<>();
         pq.add(new Node(0, Point.of(0, 0)));
-        Set<Point> visited = new HashSet<>();
         int rows = this.rows * (part2 ? 5 : 1);
         int cols = this.cols * (part2 ? 5 : 1);
+        BitSet visited = new BitSet(rows * cols);
         while (!pq.isEmpty()) {
             Node node = pq.poll();
             Point p = node.point;
-            if (visited.contains(p)) {
+            int index = p.x() + p.y() * rows;
+
+            if (visited.get(index)) {
                 continue;
             }
 
+            visited.set(index);
+
             int row = p.x();
             int col = p.y();
-
-            visited.add(p);
 
             cost[row][col] = node.cost;
 
