@@ -104,13 +104,13 @@ public class Day16 implements Puzzle<Long> {
     }
 
     private long evaluateLiteral() {
-        long value = 0L;
-        int bit;
-        do {
-            bit = readBits(1);
-            value = (value << 4) | readBits(4);
-        } while (bit != 0);
-        return value;
+        return evaluateLiteral(0);
+    }
+
+    private long evaluateLiteral(long value) {
+        boolean end = readBits(1) == 0;
+        value = value << 4 | readBits(4);
+        return end ? value : evaluateLiteral(value);
     }
 
     private int readBits(int length) {
