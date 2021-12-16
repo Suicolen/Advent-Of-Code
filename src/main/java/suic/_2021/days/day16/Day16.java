@@ -6,6 +6,7 @@ import suic.util.FileUtils;
 import suic.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HexFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class Day16 implements Puzzle<Long> {
     @Override
     public void parse() {
         String input = FileUtils.readResourceAsString(getClass().getSimpleName() + "Input.txt");
-        byte[] bytes = StringUtils.hexStringToByteArray(input);
+        byte[] bytes = HexFormat.of().parseHex(input);
         reader = new BitReader(bytes);
     }
 
