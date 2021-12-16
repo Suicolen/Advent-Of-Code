@@ -23,7 +23,7 @@ Below is a table showing which statuses for each day of each year.
 | 13    | ✅           | ✅           |
 | 14    | ✅           | ✅           |
 | 15    | ✅           | ✅           |
-| 16    | ❌           | ✅           |
+| 16    | ✅           | ✅           |
 | 17    | ❌           | ✅           |
 | 18    | ❌           | ✅           |
 | 19    | ❌           | 🚧           |
