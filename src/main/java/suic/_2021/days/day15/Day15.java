@@ -30,6 +30,17 @@ public class Day15 implements Puzzle<Integer> {
         rows = grid.length;
         cols = grid[0].length;
         cost = new int[rows * 5][cols * 5];
+
+        int warmups = 1;
+        long[] times = new long[warmups];
+        for(int i = 0; i < warmups; i++) {
+            long start = System.nanoTime();
+            solve(true);
+            times[i] = System.nanoTime() - start;
+        }
+
+        System.out.println("Took " + times[warmups - 1] / 1e6 + "ms");
+
     }
 
     public Integer solvePart1() {
