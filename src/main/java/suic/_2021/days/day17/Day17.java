@@ -66,7 +66,7 @@ public class Day17 implements Puzzle<Integer> {
                 return maxY;
             }
 
-            xVel += Integer.compare(0, xVel);
+            xVel -= Math.signum(xVel);
             yVel--;
         }
         return Integer.MIN_VALUE;
