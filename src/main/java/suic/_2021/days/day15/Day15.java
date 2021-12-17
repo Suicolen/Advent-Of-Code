@@ -14,7 +14,6 @@ public class Day15 implements Puzzle<Integer> {
         parse();
     }
 
-
     private int[][] grid;
     private int[][] cost;
 

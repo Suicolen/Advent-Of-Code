@@ -1,14 +1,9 @@
 package suic._2021.days.day10;
 
-import javafx.collections.FXCollections;
-import javafx.collections.transformation.SortedList;
-import one.util.streamex.StreamEx;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
 
 import java.util.*;
-import java.util.function.Predicate;
-
 public class Day10 implements Puzzle<Long> {
 
     private List<String> input;

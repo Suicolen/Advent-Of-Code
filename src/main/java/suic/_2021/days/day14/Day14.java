@@ -30,13 +30,13 @@ public class Day14 implements Puzzle<Long> {
 
         int warmups = 1000;
         long[] times = new long[warmups];
-        for(int i = 0; i < warmups; i++) {
+        for (int i = 0; i < warmups; i++) {
             long start = System.nanoTime();
             solvePart2();
             times[i] = System.nanoTime() - start;
         }
 
-        System.out.println("Took "  + times[warmups - 1] / 1e6 + "ms");
+        System.out.println("Took " + times[warmups - 1] / 1e6 + "ms");
 
     }
 
