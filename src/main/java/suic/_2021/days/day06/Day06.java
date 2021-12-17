@@ -36,20 +36,16 @@ public class Day06 implements Puzzle<Long> {
 
 
     public Long solvePart1() {
-        long start = System.nanoTime();
         for (int i = 0; i < 80; i++) {
             age();
         }
-        System.out.println("Took " + (System.nanoTime() - start) + "ns");
         return LongStreamEx.of(fish).sum();
     }
 
     public Long solvePart2() {
-        long start = System.nanoTime();
         for (int i = 80; i < 256; i++) { // this will work because we'll always call part 1 first
             age();
         }
-        System.out.println("Took " + (System.nanoTime() - start) + "ns");
         return LongStreamEx.of(fish).sum();
     }
 
