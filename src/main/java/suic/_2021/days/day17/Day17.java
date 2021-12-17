@@ -32,7 +32,7 @@ public class Day17 implements Puzzle<Integer> {
 
     @Override
     public Integer solvePart1() {
-        int initialVel = (-1 * minY) - 1;
+        int initialVel = -minY - 1;
         return (initialVel + 1) * initialVel / 2;
     }
 
