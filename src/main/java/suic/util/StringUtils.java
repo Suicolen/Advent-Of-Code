@@ -23,14 +23,6 @@ public class StringUtils {
         return IntStreamEx.ofChars(str).mapToObj(c -> (char) c).toMutableList();
     }
 
-    public static List<Boolean> toBooleanList(String str) {
-        List<Boolean> list = new ArrayList<>(str.length());
-        for (char c : str.toCharArray()) {
-            list.add(c == '#');
-        }
-        return list;
-    }
-
     public static boolean[] toBooleanArray(String str) {
         boolean[] array = new boolean[str.length()];
         for (int i = 0; i < array.length; i++) {
