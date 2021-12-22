@@ -27,7 +27,7 @@ public class Day22 implements Puzzle<Long> {
     private Cube parseCube(String line) {
         Matcher matcher = CUBE_PATTERN.matcher(line);
         matcher.matches();
-        boolean state = matcher.group(1).equals("on");
+        boolean on = matcher.group(1).equals("on");
         long startX = parseLong(matcher.group(2));
         long endX = parseLong(matcher.group(3));
 
@@ -37,7 +37,7 @@ public class Day22 implements Puzzle<Long> {
         long startZ = parseLong(matcher.group(6));
         long endZ = parseLong(matcher.group(7));
 
-        return new Cube(state, startX, endX, startY, endY, startZ, endZ);
+        return new Cube(on, startX, endX, startY, endY, startZ, endZ);
     }
 
     @Override
@@ -55,8 +55,8 @@ public class Day22 implements Puzzle<Long> {
                     }
                 }
             }
-
         });
+
         return (long) on.size();
     }
 
