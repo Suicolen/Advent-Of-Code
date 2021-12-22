@@ -3,6 +3,7 @@ package suic._2021.days.day22;
 import one.util.streamex.StreamEx;
 import suic._2021.Puzzle;
 import suic.util.FileUtils;
+import suic.util.Vector3L;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -95,9 +96,6 @@ public class Day22 implements Puzzle<Long> {
         private long volume() {
             return (endX - startX + 1L) * (endY - startY + 1L) * (endZ - startZ + 1L);
         }
-
-    }
-
-    private record Vector3L(long x, long y, long z) {
+        
     }
 }
