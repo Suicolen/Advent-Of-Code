@@ -1,13 +1,16 @@
 package suic._2021.days.day04;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public record Bingo(List<Integer> numbers, List<Cell[][]> boards) {
 
     public long solve(boolean first) {
+       // List<BingoWinner> winners = new ArrayList<>();
         for (int num : numbers) {
             for (int i = 0; i < boards.size(); i++) {
                 Cell[][] cells = boards.get(i);
@@ -20,11 +23,15 @@ public record Bingo(List<Integer> numbers, List<Cell[][]> boards) {
                         } else {
                             boards.remove(i--);
                         }
+
+
                     }
                 }
             }
         }
-        return -1L;
+        return -1;
+        //BingoWinner last = winners.get(winners.size() - 1);
+        //return computeResult(last.cells, last.num);
     }
 
     private boolean markCell(Cell[][] cells, int num) {
@@ -46,6 +53,7 @@ public record Bingo(List<Integer> numbers, List<Cell[][]> boards) {
                 return true;
             }
         }
+
         for (int i = 0; i < cells[0].length; i++) {
             if (isInvalid(cells, i)) {
                 continue;
@@ -67,5 +75,8 @@ public record Bingo(List<Integer> numbers, List<Cell[][]> boards) {
 
     private boolean isInvalid(Cell[][] cells, int i) {
         return IntStream.range(0, cells[i].length).anyMatch(j -> !cells[j][i].isMarked());
+    }
+
+    private record BingoWinner(Cell[][] cells, int num) {
     }
 }
