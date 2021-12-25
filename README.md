@@ -30,6 +30,6 @@ Below is a table showing which statuses for each day of each year.
 | 20    | ✅           | ❌           |
 | 21    | ✅           | ❌           |
 | 22    | ✅           | ❌           |
-| 23    | ❌           | ❌           |
-| 24    | ❌           | ❌           |
-| 25    | ❌           | ❌           |
+| 23    | ✅           | ❌           |
+| 24    | ✅           | ❌           |
+| 25    | ✅           | ❌           |
